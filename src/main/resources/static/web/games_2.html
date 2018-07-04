@@ -4,8 +4,47 @@
   <meta charset="UTF-8">
   <title>Salvo!</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/games_2.css">
 </head>
 <body>
+<!--<div style="position: fixed; z-index: -99; width: 100%; height: 100%">
+  <iframe frameborder="0" height="100%" width="100%"
+          src="https://www.youtube.com/watch?v=9MglvQe8mDE">
+  </iframe>
+</div>-->
+<div   id="login-mail-pass">
+  <div id="user-panel" class="col-sm-3 mb-4">
+    <span id="user-info"></span>
+    <button id="logout-btn" type="button" class="btn btn-sm btn-primary">Logout</button>
+  </div>
+  <div id="login-panel" class="col-sm-6 mb-4">
+    <form id="login-form" method="post" class="form-inline">
+      <div class="form-group">
+        <label for="username" class="col-form-label mr-2">Email</label>
+        <input id="username" class="form-control form-control-sm mr-2" type="text" placeholder="correo@mail.com">
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-form-label mr-2">Password</label>
+        <input id="password" class="form-control form-control-sm mr-2" type="password" placeholder="contrase&ntilde;a">
+      </div>
+      <button id="login-btn" type="button" class="btn btn-sm btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+<div class="mySlides" id="Wrapper">
+
+  <div class="phrase">
+    <h2><b>"Appear weak when you are strong, and strong when you are weak."</b></h2>
+    <h3><i>-Sun Tzu, The Art of War</i></h3>
+    <div class="welcome">
+      <h1><b>Welcome to Salvo!</b></h1>
+      <!--<h1><i></i></h1>-->
+    </div>
+
+  </div>
+</div>
+
+
   <div class="container">
     <div class="row">
       <div class="col">
@@ -27,11 +66,16 @@
       </div>
     </div>
   </div>
-  
-  
+
+  <video autoplay loop id="myVideo">
+    <source src="css/videos/World of Warships - Launch Trailer3.mp4" type="video/mp4">
+  </video>
+
+
   <script src="js/popper.min.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="./js/games_2.js"></script>
+</div>
 </body>
 </html>

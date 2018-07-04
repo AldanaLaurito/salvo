@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Ships locations!</title>
-  <link rel="stylesheet" type="text/css" href="css/game.css">
   <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/game_view.css">
 </head>
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
           <section>
             <h2>Game Board</h2>
             <table border="1">
-              <thead>
+              <thead id="table-head">
                 <th></th>
                 <th id="bth_0">1</th><th id="bth_1">2</th><th id="bth_2">3</th><th id="bth_3">4</th><th id="bth_4">5</th>
                 <th id="bth_5">6</th><th id="bth_6">7</th><th id="bth_7">8</th><th id="bth_8">9</th><th id="bth_9">10</th>
@@ -59,7 +59,7 @@
                 </tr>
                 <tr>
                   <td>H</td>
-                  <td id="B_H"></td><td id="B_H2"></td><td id="B_H3"></td><td id="B_H4"></td><td id="B_H5"></td>
+                  <td id="B_H1"></td><td id="B_H2"></td><td id="B_H3"></td><td id="B_H4"></td><td id="B_H5"></td>
                   <td id="B_H6"></td><td id="B_H7"></td><td id="B_H8"></td><td id="B_H9"></td><td id="HB_10"></td>
                 </tr>
                 <tr>
@@ -80,7 +80,7 @@
           <section>
             <h2>Salvo board</h2>
             <table border="1">
-              <thead>
+              <thead id="table-head">
                 <th></th>
                 <th id="th_0">1</th><th id="th_1">2</th><th id="th_2">3</th><th id="th_3">4</th><th id="th_4">5</th>
                 <th id="th_5">6</th><th id="th_6">7</th><th id="th_7">8</th><th id="th_8">9</th><th id="th_9">10</th>
@@ -123,7 +123,7 @@
                 </tr>
                 <tr>
                   <td>H</td>
-                  <td id="S_H"></td><td id="S_H2"></td><td id="S_H3"></td><td id="S_H4"></td><td id="S_H5"></td>
+                  <td id="S_H1"></td><td id="S_H2"></td><td id="S_H3"></td><td id="S_H4"></td><td id="S_H5"></td>
                   <td id="S_H6"></td><td id="S_H7"></td><td id="S_H8"></td><td id="S_H9"></td><td id="S_H10"></td>
                 </tr>
                 <tr>
@@ -142,9 +142,30 @@
         </div>
       </div>
     </div>
+    <audio controls preload="auto" id="music" loop autoplay>
+      <source src="css/audio/Battlefield1942.mp3">
+      <div>
+        <button onclick="document.getElementById('demo').play()">Reproducir el Audio</button>
+        <button onclick="document.getElementById('demo').pause()">Pausar el Audio</button>
+        <button onclick="document.getElementById('demo').volume+=0.1">Aumentar el Volumen</button>
+        <button onclick="document.getElementById('demo').volume-=0.1">Disminuir el Volumen</button>
+      </div>
+      Your browser does not support the audio element.
+    </audio>
+    <!--<audio controls autoplay loop>
+            <source src="css/audio/Battlefield 1942 Intro Music [No sound FX][HQ].mp3" type="audio/mpeg">
+      <p>Tu navegador no implementa el elemento audio</p>
+    </audio>
+
+    <!--<audio controls>
+      <source src="horse.ogg" type="audio/ogg">
+      <source src="horse.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>-->
 <script src="js/popper.min.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 <script src="./js/game_2.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

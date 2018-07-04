@@ -1,11 +1,53 @@
+body{
+background-image: url("images/wallpaperBN.jpg")
+}
+
+span{
+font-weight: bold;
+}
+
+table, th, td {
+   border: 1px solid oldlace;
+}
 .ship-piece{
-    background-color: darkslateblue;
+
+    background-color: darkslategrey;
 }
 
 .ship-piece-hited{
-    background-color: darkmagenta;
+    background-color: magenta;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    background-image:url("images/ship-pieces-hitted.jpg");
+
+    background-size: 48px 28px;
 }
 
 .salvo{
-    background-color: crimson;
+font-weight: bold;
+text-align: center;
+    background-color: tomato;
+    color: black;
+    background-image:url("images/salvos.png");
+
+    background-size: 39px 25px;
+}
+
+table, th, td {
+   border: 1px solid oldlace;
+  background-color: #20B2AA;
+}
+
+table {
+    width: 90%;
+  opacity: 0.87;
+}
+
+th {
+    height: 40px;
+    background-color: gray;
+}
+td:nth-child(1){
+background-color: gray;
 }

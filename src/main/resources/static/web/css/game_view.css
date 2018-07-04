@@ -1,0 +1,110 @@
+body{
+background-image: url("images/wallpaperBN.jpg");
+text-align: center;
+/*padding-top: 50px;
+   padding-right: 30px;
+   padding-bottom: 50px;
+   padding-left: 80px;*/
+}
+
+.container{
+position: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+  margin-top: 5%;
+  margin-left: 8%;
+  margin-right: 8%;
+}
+audio{
+
+color:#20B2AA;
+ opacity: 0.40;
+ position: bottom;
+}
+span{
+font-weight: bold;
+}
+
+table, th, td {
+  border: 1px solid oldlace;
+}
+.ship-piece{
+background-color:#2F4F4F;
+background-image:url("images/airCraftCarrierB2.jpg");
+/*background-color: gray #2F4F4F !important;*/
+   background-size: 40px 30px;
+
+}
+.ship-piece-vertical{
+background-image:url("images/airCraftCarrierB2.jpg");
+/*background-color: gray #2F4F4F !important;*/
+  background-size: 40px 30px;
+transform:          rotate(270deg);
+-ms-transform:      rotate(270deg);
+-moz-transform:     rotate(270deg);
+-webkit-transform:  rotate(270deg);
+-o-transform:       rotate(270deg);
+}
+.ship-piece-hited{
+   /*background-color: magenta;*/
+    color: black;
+   text-align: center;
+   color: black;
+   font-weight: bold;
+   background-image:url("images/ship-pieces-hitted.jpg");
+   background-position: center;
+     margin-left: auto;
+           margin-right: auto;
+
+
+   background-size: 48px 28px;
+}
+
+.salvo{
+font-weight: bold;
+text-align: center;
+   /*background-color: tomato;*/
+   color: black;
+   background-image:url("images/salvos.png");
+   background-position: center;
+     margin-left: auto;
+           margin-right: auto;
+   background-size: 39px 25px;
+}
+
+/*table, th, td {
+  border: 1px solid oldlace;
+
+}*/
+
+table {
+   width: 90%;
+ opacity: 0.90;
+ background-image:url("images/radar.gif");
+ background-position: center;
+ margin-left: auto;
+       margin-right: auto;
+       width: 350px;
+           height: 350px;
+}
+
+th {
+   height: 40px;
+   /*background-color: gray !important;*/
+   background-color:dimgray;
+}
+td:nth-child(1){
+/*background-color: gray !important;*/
+background-color:dimgray;
+}
+/*table.background{
+
+ background-image:url(images/radar.gif);
+ background-position: center;
+     margin-left: auto;
+     margin-right: auto;
+     width: 440px;
+         height: 440px;
+}*/

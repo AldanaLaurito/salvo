@@ -1,0 +1,75 @@
+body{
+background-image: url("images/wallpaperBN.jpg")
+
+}
+#user-panel{
+    display:none;
+}
+
+
+.list-group{
+opacity:0.9;
+}
+
+#myVideo{
+position: fixed;
+   right: 0;
+   bottom: 0;
+   min-width: 100%;
+   min-height: 100%;
+background-size: 1289px 200px;
+   z-index: -1;
+}
+#Wrapper {
+ border:3px solid darkred;
+ background: url("images/salvoWelcome2.jpg") no-repeat center top;
+ height: 143px;
+ background-size: 1390px 190px;
+
+  background-size: 1490px 190px;
+
+
+}
+#login-mail-pass {
+ position: top;
+ text-align: center;
+color: firebrick;
+
+      text-shadow:
+        0.5px 0.5px 0 #000;
+
+}
+
+#game-list{
+ background-color: darkred;
+ opacity:0.9;
+}
+
+table, th, td {
+  border: 1px solid oldlace;
+ background-color: #20B2AA;
+}
+.mySlides{
+
+      text-align: center;
+     /* background-image: url ("images/salvoWelcome2.jpg");
+
+ background-position: center center, center top;*/
+      color: firebrick;
+
+      text-shadow:
+        0.5px 0.5px 0 #000;
+}
+
+table {
+   width: 90%;
+ opacity: 0.90;
+}
+
+th {
+   height: 40px;
+   background-color: gray;
+}
+td:nth-child(1){
+background-color: gray;
+}
