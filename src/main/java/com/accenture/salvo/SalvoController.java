@@ -94,6 +94,10 @@ public class SalvoController {
         msgNet.put("success","The ships were successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
     }
+    /*@RequestMapping(path = "/games/players/{gamePlayerID}/salvoes", method= RequestMethod.POST)
+        public ResponseEntity<Map<String, Object>> setSalvoes(@PathVariable Long gamePlayerID, @RequestBody Salvo salvo, Authentication authentication) {
+                
+        }*/
 
     @RequestMapping("/games")
     public Map<String, Object> getAll(Authentication authentication) {
