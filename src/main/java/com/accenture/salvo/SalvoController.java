@@ -42,11 +42,33 @@ public class SalvoController {
         Map<String,Object> msg=new HashMap<>();
 
         if (isGuest(authentication)) {
-            msg.put("error","There is no user");
+            msg.put("error","No user has logged");
             return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
         }
         Game game = new Game();
         repo.save(game);
+        Player player = playerRepo.findByUserName(authentication.getName());
+        GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
+        gamePlayerRepo.save(gamePlayer);
+        msg.put("gpid",gamePlayer.getId());
+        return new ResponseEntity<>(msg, HttpStatus.CREATED);
+    }
+    @RequestMapping(path = "/game/{idGame}/players",method = RequestMethod.POST)
+    public ResponseEntity<Object> joinGame(Authentication authentication,@PathVariable long idGame){
+        Map<String,Object> msg=new HashMap<>();
+        Game game = repo.findById(idGame);
+        if (isGuest(authentication)) {
+            msg.put("error","No user has logged");
+            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+        }
+        else if(game==null){
+            msg.put("error","No such game");
+            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+        }
+        else if(game.getGamePlayers().stream().count()==2){
+            msg.put("error","Game is full");
+            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+        }
         Player player = playerRepo.findByUserName(authentication.getName());
         GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
         gamePlayerRepo.save(gamePlayer);
