@@ -21,6 +21,8 @@ public class SalvoController {
 
     @Autowired
     private PlayerRepository playerRepo;
+    @Autowired
+    private ShipRepository shipRepo;
 
 
     @RequestMapping(path = "/players",method = RequestMethod.POST)
@@ -74,6 +76,23 @@ public class SalvoController {
         gamePlayerRepo.save(gamePlayer);
         msg.put("gpid",gamePlayer.getId());
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
+    }
+    @RequestMapping(path = "/games/players/{gamePlayerId}/ships",method = RequestMethod.POST)
+    public ResponseEntity<Object> placeShip(@RequestBody List <Ship> listShips,Authentication authentication,@PathVariable long gamePlayerId){
+        Map<String,Object> msgNet=new HashMap<>();
+
+        if (isGuest(authentication)|| gamePlayerRepo.findById(gamePlayerId)==null||authentication.getName()!=gamePlayerRepo.findById(gamePlayerId).getPlayer().getUserName()) {
+            msgNet.put("error","Ships couldn't be saved");
+            return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
+        }
+        else if(gamePlayerRepo.findById(gamePlayerId).getShips().stream().count()!=0){
+            msgNet.put("error","The user has already placed their ships");
+            return new ResponseEntity<>(msgNet, HttpStatus.FORBIDDEN);
+        }
+        shipRepo.save(listShips);
+        gamePlayerRepo.findById(gamePlayerId).setShips(listShips.stream().collect(Collectors.toSet()));
+        msgNet.put("success","The ships were successfully placed");
+        return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
     }
 
     @RequestMapping("/games")
