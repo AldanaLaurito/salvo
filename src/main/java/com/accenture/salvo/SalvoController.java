@@ -46,7 +46,7 @@ public class SalvoController {
             dto.put("player",getPlayerLogged(authentication).playerLogged());
         }
         else {
-            dto.put("player", "guest");
+            dto.put("player", "Guest");
         }
 
             dto.put("games", repo.findAll().stream()
