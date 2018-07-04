@@ -42,13 +42,18 @@ public class SalvoController {
     public Map<String, Object> getAll(Authentication authentication) {
         Map<String, Object> dto = new LinkedHashMap<>();
         if (!(isGuest(authentication))){
-           // dto.put("player", "Guest");
+
             dto.put("player",getPlayerLogged(authentication).playerLogged());
         }
-        dto.put("games",repo.findAll().stream()
-                .map(Game::gameDtoNoShips)
-                .collect(Collectors.toList()));
-        return dto;
+        else {
+            dto.put("player", "guest");
+        }
+
+            dto.put("games", repo.findAll().stream()
+                    .map(Game::gameDtoNoShips)
+                    .collect(Collectors.toList()));
+            return dto;
+
     }
     @RequestMapping("/player/{idPlayer}/leaderBoard")
     public Map<String, Object> getPlayerLeaderboard(@PathVariable long idPlayer) {

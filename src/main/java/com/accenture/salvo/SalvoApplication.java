@@ -423,9 +423,11 @@ public class SalvoApplication {
 					//.anyRequest().fullyAuthenticated();
 					*/
 			http.authorizeRequests()
-					.antMatchers("/web/**").permitAll()
 					.antMatchers("/webNew/**").permitAll()
+					.antMatchers("/api/game_view/**").hasAuthority("USER")
 					.antMatchers("/api/**").permitAll()
+					.antMatchers("/web/**").permitAll()
+					.antMatchers("/**").permitAll()
 					.anyRequest().hasAuthority("USER");
 
 			http.formLogin()

@@ -1,3 +1,4 @@
+
 let data;
 let gamesData;
 let playersArray;
@@ -328,7 +329,6 @@ function showScoreBoard(playersArray) {
             }
         }
     }
-
 
 
 
