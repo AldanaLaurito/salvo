@@ -37,6 +37,22 @@ public class SalvoController {
         msg.put("name",email);
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
+    @RequestMapping(path = "/games",method = RequestMethod.POST)
+    public ResponseEntity<Object> createGame(Authentication authentication){
+        Map<String,Object> msg=new HashMap<>();
+
+        if (isGuest(authentication)) {
+            msg.put("error","There is no user");
+            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+        }
+        Game game = new Game();
+        repo.save(game);
+        Player player = playerRepo.findByUserName(authentication.getName());
+        GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
+        gamePlayerRepo.save(gamePlayer);
+        msg.put("gpid",gamePlayer.getId());
+        return new ResponseEntity<>(msg, HttpStatus.CREATED);
+    }
 
     @RequestMapping("/games")
     public Map<String, Object> getAll(Authentication authentication) {
@@ -67,16 +83,41 @@ public class SalvoController {
     }
 
 
-    @RequestMapping("/game_view/{idGamePlayer}")
-    public Map<String, Object> gamePlayer (@PathVariable long idGamePlayer){
+    /*@RequestMapping("/game_view/{idGamePlayer}")
+    public Map<String, Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
         Map<String, Object> list= new HashMap<String, Object>();
         GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
-        list.put("id",gamePlayer.getGame().getId());
-        list.put("created",gamePlayer.getGame().getGameDate());
-        list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
-        list.put("ships", gamePlayer.gamePlayerShipsDto());
-        list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
+        if(authentication.getName()==gamePlayer.getPlayer().getUserName())
+        {
+            list.put("id",gamePlayer.getGame().getId());
+            list.put("created",gamePlayer.getGame().getGameDate());
+            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
+            list.put("ships", gamePlayer.gamePlayerShipsDto());
+            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
+        }
+        else{
+            list.put("Forbidden",HttpStatus.UNAUTHORIZED);
+        }
         return list;
+    }*/
+    @RequestMapping("/game_view/{idGamePlayer}")
+    public ResponseEntity<Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
+
+        Map<String, Object> list= new HashMap<String, Object>();
+        GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
+        if(authentication.getName()==gamePlayer.getPlayer().getUserName())
+        {
+            list.put("id",gamePlayer.getGame().getId());
+            list.put("created",gamePlayer.getGame().getGameDate());
+            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
+            list.put("ships", gamePlayer.gamePlayerShipsDto());
+            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
+            return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
+        }
+        else{
+            list.put("error","unauthorized");
+            return new ResponseEntity<>(list, HttpStatus.UNAUTHORIZED);
+        }
     }
 
     private Player getPlayerLogged (Authentication authentication){
