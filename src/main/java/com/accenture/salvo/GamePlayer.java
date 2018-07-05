@@ -19,7 +19,7 @@ public class GamePlayer {
 
 
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Ship> ships;
 
 
@@ -127,6 +127,17 @@ public class GamePlayer {
     public Score getScore() {
        return this.game.getScores().stream()
                .findFirst().get();
+    }
+    public void setShip(List<Ship> ships) {
+        ships.forEach(ship ->{
+            ship.setGamePlayer(this);
+            this.ships.add(ship);
+        });
+    }
+
+    public void setSalvo(Salvo salvo) {
+        salvo.setGamePlayer(this);
+        this.salvoes.add(salvo);
     }
 
 }
