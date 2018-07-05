@@ -3,129 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="26905a53-81f7-407b-adaf-9c9bf0a60db7" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/audio/Battlefield1942.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/game.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/game_view.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/games.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/games_2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/47750.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/airCraftCarrierA.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/airCraftCarrierB.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/airCraftCarrierB2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion.hasgraphics.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion2a.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/explosion3a.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/radar.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/radar2.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/radar3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/radar4.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/salvoWelcome.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/salvoWelcome2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/salvos.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/ship-pieces-hitted.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/ship_big_water_ripple.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/wallpaperBN.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/wallpaperBN2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/water.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/images/water_units.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/videos/Battlefield 1942 Intro with official remastered orchestra theme.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/videos/World of Warships - Launch Trailer.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/videos/World of Warships - Launch Trailer2.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/css/videos/World of Warships - Launch Trailer3.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/game_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/games.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/games_2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/games_3.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/game_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/games_2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/games_3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/games_4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/jquery-3.3.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/web/js/popper.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/audio/test.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/css/gridstack-extra.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/css/gridstack.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/css/normalize.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/game.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/games.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/back1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/back2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/backshipplacement.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/backships.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/battleshipafloat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/battleshiphor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/battleshipsunk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/battleshipver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/carrierafloat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/carrierhor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/carriersunk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/carrierver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/destoyersunk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/destroyerafloat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/destroyerhor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/destroyerver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/gameactionrequired.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/greenhit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/greenmissed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/gridback.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/hit.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/hit3.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/hitblast.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/hitsmoke.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/misilrocket.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/missed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/patrolboatafloat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/patrolboathor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/patrolboatsunk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/patrolboatver.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/redhit.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/rotate.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/rotatewhite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/submarineafloat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/submarinehor.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/submarinesunk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/submarinever.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/target.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/targetself.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/img/titlebannersalvo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/game.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/games.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/gridstack.jQueryUI.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/gridstack.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/interact.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/interact.min1_33.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/interact14.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/interactsalvo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/modernizr-2.6.2.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/plugins.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/webNew/js/shipPlacement.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -211,8 +89,8 @@
       <file leaf-file-name="SalvoController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            <state relative-caret-position="398">
+              <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6566#6582#0" expanded="true" />
@@ -224,11 +102,20 @@
       <file leaf-file-name="Salvo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Salvo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="717">
-              <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+            <state>
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Ship.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Ship.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -627,15 +514,12 @@
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/static/web/games.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/web/games.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Ship.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Salvo.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/web/game.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/ScoreRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Classes/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Classes/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Classes/GamePlayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Score.java" />
         <option value="$PROJECT_DIR$/src/main/resources/static/web/css/games.css" />
@@ -656,6 +540,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GameRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayerRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoApplication.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Salvo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Ship.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java" />
       </list>
     </option>
@@ -937,7 +824,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
@@ -952,13 +839,13 @@
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32838285" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.21709532" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.21709532" />
       <window_info anchor="right" id="Gradle" order="1" visible="true" weight="0.20121029" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" visible="true" weight="0.4389439" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4389439" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -983,16 +870,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java</url>
           <line>83</line>
           <properties />
-          <option name="timeStamp" value="19" />
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java</url>
-          <line>102</line>
+          <line>103</line>
           <properties />
-          <option name="timeStamp" value="21" />
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="24" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
@@ -1075,13 +962,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Ship.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/games.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/css/game.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/web/js/game_2.js" />
@@ -1124,16 +1004,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/webNew/games.html" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/webNew/js/interactsalvo.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/webNew/js/games.js" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/PlayerRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1220,10 +1090,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Salvo.java">
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.18.RELEASE/119af634ec8be34e3c8c695e05f60f84b03fa7b1/spring-web-4.3.18.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="68" column="39" selection-start-line="68" selection-start-column="39" selection-end-line="68" selection-end-column="39" />
+        <state relative-caret-position="97">
+          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="25" column="25" lean-forward="true" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1237,17 +1114,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.18.RELEASE/119af634ec8be34e3c8c695e05f60f84b03fa7b1/spring-web-4.3.18.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Salvo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        <state>
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/Ship.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        <state relative-caret-position="398">
+          <caret line="94" column="66" selection-start-line="94" selection-start-column="66" selection-end-line="94" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#6566#6582#0" expanded="true" />

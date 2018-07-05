@@ -92,6 +92,7 @@ public class SalvoController {
             msgNet.put("error","The user has already placed their ships");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
+        listShips.forEach(ship -> ship.setGamePlayer(gamePlayer));
         shipRepo.save(listShips);
         gamePlayer.setShips(listShips.stream().collect(Collectors.toSet()));
         gamePlayerRepo.save(gamePlayer);
@@ -112,6 +113,7 @@ public class SalvoController {
             msgNet.put("error","The user has already placed a salvo in this turn");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
+        salvo.setGamePlayer(gamePlayer);
            salvoRepo.save(salvo);
             gamePlayer.getSalvoes().add(salvo);
         gamePlayerRepo.save(gamePlayer);
