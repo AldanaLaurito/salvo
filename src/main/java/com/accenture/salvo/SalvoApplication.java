@@ -429,6 +429,7 @@ public class SalvoApplication {
 					.antMatchers("/web/**").permitAll()
 					.antMatchers("/**").permitAll()
 					.anyRequest().hasAuthority("USER");
+			http.headers().frameOptions().disable();
 
 			http.formLogin()
 					.usernameParameter("name")

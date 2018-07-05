@@ -23,6 +23,8 @@ public class SalvoController {
     private PlayerRepository playerRepo;
     @Autowired
     private ShipRepository shipRepo;
+    @Autowired
+    private SalvoRepository salvoRepo;
 
 
     @RequestMapping(path = "/players",method = RequestMethod.POST)
@@ -32,7 +34,7 @@ public class SalvoController {
         Player player = playerRepo.findByUserName(email);
         if (player != null) {
             msg.put("error","Name in use");
-            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
 
         playerRepo.save(new Player(email,password));
@@ -69,7 +71,7 @@ public class SalvoController {
         }
         else if(game.getGamePlayers().stream().count()==2){
             msg.put("error","Game is full");
-            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
         Player player = playerRepo.findByUserName(authentication.getName());
         GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
@@ -80,24 +82,42 @@ public class SalvoController {
     @RequestMapping(path = "/games/players/{gamePlayerId}/ships",method = RequestMethod.POST)
     public ResponseEntity<Object> placeShip(@RequestBody List <Ship> listShips,Authentication authentication,@PathVariable long gamePlayerId){
         Map<String,Object> msgNet=new HashMap<>();
+        GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
-        if (isGuest(authentication)|| gamePlayerRepo.findById(gamePlayerId)==null||authentication.getName()!=gamePlayerRepo.findById(gamePlayerId).getPlayer().getUserName()) {
+        if ((isGuest(authentication))|| (gamePlayer==null)|| ((gamePlayer!=null) && (authentication.getName()!=gamePlayer.getPlayer().getUserName()))) {
             msgNet.put("error","Ships couldn't be saved");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
-        else if(gamePlayerRepo.findById(gamePlayerId).getShips().stream().count()!=0){
+        else if(gamePlayer.getShips().stream().count()==5){
             msgNet.put("error","The user has already placed their ships");
-            return new ResponseEntity<>(msgNet, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
         shipRepo.save(listShips);
-        gamePlayerRepo.findById(gamePlayerId).setShips(listShips.stream().collect(Collectors.toSet()));
+        gamePlayer.setShips(listShips.stream().collect(Collectors.toSet()));
+        gamePlayerRepo.save(gamePlayer);
         msgNet.put("success","The ships were successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
     }
-    /*@RequestMapping(path = "/games/players/{gamePlayerID}/salvoes", method= RequestMethod.POST)
-        public ResponseEntity<Map<String, Object>> setSalvoes(@PathVariable Long gamePlayerID, @RequestBody Salvo salvo, Authentication authentication) {
-                
-        }*/
+    @RequestMapping(path = "/games/players/{gamePlayerId}/salvoes", method= RequestMethod.POST)
+        public ResponseEntity<Map<String, Object>> setSalvoes(@PathVariable Long gamePlayerId, @RequestBody Salvo salvo, Authentication authentication) {
+        Map<String,Object> msgNet=new HashMap<>();
+        GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
+
+        if ((isGuest(authentication))|| (gamePlayer==null)|| (gamePlayer!=null && authentication.getName()!=gamePlayer.getPlayer().getUserName())) {
+            msgNet.put("error","The salvo couldn´t be saved");
+            return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
+        }
+
+        else if((gamePlayer.getSalvoes().stream().filter(salvo1 -> salvo1.getTurn()==salvo.getTurn()).count()!=0)||(gamePlayer.getSalvoes().stream().count()==5)){
+            msgNet.put("error","The user has already placed a salvo in this turn");
+            return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
+        }
+           salvoRepo.save(salvo);
+            gamePlayer.getSalvoes().add(salvo);
+        gamePlayerRepo.save(gamePlayer);
+        msgNet.put("success","The salvo was successfully placed");
+        return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
+        }
 
     @RequestMapping("/games")
     public Map<String, Object> getAll(Authentication authentication) {
