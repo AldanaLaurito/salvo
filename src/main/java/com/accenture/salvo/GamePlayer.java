@@ -1,7 +1,9 @@
 package com.accenture.salvo;
 
+
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class GamePlayer {
@@ -14,6 +16,15 @@ public class GamePlayer {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="game_id")
     private Game game;
+
+
+
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    Set<Ship> ships;
+
+
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    Set<Salvo> salvoes;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="player_id")
@@ -59,11 +70,63 @@ public class GamePlayer {
         this.player = player;
     }
 
+    public Set<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(Set<Ship> ships) {
+        this.ships = ships;
+    }
+
+    public Set<Salvo> getSalvoes() {
+        return salvoes;
+    }
+
+    public void setSalvoes(Set<Salvo> salvoes) {
+        this.salvoes = salvoes;
+    }
+
+
     public Map<String, Object> gamePlayerDto(){
+        Map<String,Object> list = new HashMap<>();
+        list.put("id",this.id);
+        list.put("player",this.player.playerDto());
+        list.put("joinDate",game.getGameDate());
+        list.put("ships",this.ships.stream()
+                .map(ship -> ship.shipDto())
+                .collect(Collectors.toList()));
+        return list;
+    }
+    public Map<String, Object> gamePlayerDtoNoShips(){
         Map<String,Object> list = new HashMap<>();
         list.put("id",this.id);
         list.put("player",this.player.playerDto());
         list.put("joinDate",game.getGameDate());
         return list;
     }
+    public List<Object> gamePlayerShipsDto(){
+        return this.ships
+                .stream()
+                .map(ship -> ship.shipDto())
+                .collect(Collectors.toList());
+    }
+    public List<Object> gamePlayerSalvosDto(){
+        return this.salvoes
+                .stream()
+                .map(salvo -> salvo.salvoDto())
+                .collect(Collectors.toList());
+    }
+    public Map<String, Object> gamePlayerDtoPlayers(){
+        Map<String,Object> list = new HashMap<>();
+        list.put("id",this.id);
+        list.put("joinDate", this.creationDate);
+        list.put("player",this.player.playerDto());
+        return list;
+    }
+
+    public Score getScore() {
+       return this.game.getScores().stream()
+               .findFirst().get();
+    }
+
 }

@@ -16,6 +16,9 @@ public class Game {
     @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
     private Set<GamePlayer> gamePlayers;
 
+    @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
+    private Set<Score> scores;
+
     public Game(){ this.gameDate = new Date();    }
     public Game(Date date){
         this.gameDate=date;
@@ -50,12 +53,38 @@ public class Game {
         return gamePlayers;
     }
 
-    public Map<String, Object> gameDto(){
+    public Set<Score> getScores() {
+        return scores;
+    }
+
+    public void setScores(Set<Score> scores) {
+        this.scores = scores;
+    }
+
+    public Map<String, Object> gameDtoNoShips(){
         Map<String,Object> list = new HashMap<>();
         list.put("id",this.id);
         list.put("created",this.gameDate);
-        list.put("gamePlayers",this.gamePlayers.stream().map(gamePlayer -> gamePlayer.gamePlayerDto()).collect(Collectors.toList()));
+        list.put("gamePlayers",this.gamePlayers
+                .stream()
+                .map(gamePlayer -> gamePlayer.gamePlayerDtoNoShips())
+                .collect(Collectors.toList()));
+        list.put("scores",this.scores.stream().map(score -> score.scoreDto()).collect(Collectors.toList()));
         return list;
     }
+    
+    public List<Object> gameDtoPlayers(){
+        return this.gamePlayers
+                .stream()
+                .map(gamePlayer -> gamePlayer.gamePlayerDtoPlayers())
+                .collect(Collectors.toList());
+    }
+    public List<Object> gameDtoSalvo(){
+        return this.gamePlayers
+                .stream()
+                .flatMap(gamePlayer -> gamePlayer.getSalvoes().stream().map(Salvo::salvoDto))
+                .collect(Collectors.toList());
+    }
+
 
 }
