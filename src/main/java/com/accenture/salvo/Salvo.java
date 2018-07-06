@@ -73,10 +73,22 @@ public class Salvo {
         listHits.put("turn",this.turn);
         //this.locations.containsAll()
         List<String> hitLocations = new ArrayList<>();
+        List<String> missLocations = new ArrayList<>();
+        List<String> salvoLocations=new ArrayList<>();
+        ships.stream()
+                .forEach(ship -> {
+                    for(int i=0; i<ship.getLocations().stream().count();i++){
+                        for(int j=0;j<salvoLocations.stream().count();j++){
+                            if (ship.getLocations().get(i)==salvoLocations.get(j)){
+                                hitLocations.add(ship.getLocations().get(i));
+                            }
+                            else{
+                                missLocations.add(ship.getLocations().get(i));
+                            }
+                        }
+                    }});
 
-        ships.stream().forEach(ship -> {ship.getLocations().stream().count();});
-        long missed = 0;
-
+        long missed = missLocations.stream().count();
 
         return listHits;
     }
