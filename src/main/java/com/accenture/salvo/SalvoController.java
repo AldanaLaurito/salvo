@@ -46,8 +46,8 @@ public class SalvoController {
         Map<String,Object> msg=new HashMap<>();
 
         if (isGuest(authentication)) {
-            msg.put("error","No user has logged");
-            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         Game game = new Game();
         repo.save(game);
@@ -62,12 +62,12 @@ public class SalvoController {
         Map<String,Object> msg=new HashMap<>();
         Game game = repo.findById(idGame);
         if (isGuest(authentication)) {
-            msg.put("error","No user has logged");
-            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         else if(game==null){
             msg.put("error","No such game");
-            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
         else if(game.getGamePlayers().stream().count()==2){
             msg.put("error","Game is full");
@@ -191,5 +191,9 @@ public class SalvoController {
         return authentication == null || authentication.getName()=="anonymousUser" || authentication instanceof AnonymousAuthenticationToken;
     }
 
+    public final class ErrorsMsg  {
+        public static final String KEY_ERROR= "error";
+        public static final String MSG_ERROR_NO_USER = "No user has logged";
+    }
 
 }

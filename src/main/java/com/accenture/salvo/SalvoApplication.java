@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -261,31 +260,31 @@ public class SalvoApplication {
 			Ship ship27 = new Ship("battleship",gamePlayer14);
 
 
-			ship1.setListLocations(listLocationsSh1);
-			ship2.setListLocations(listLocationsSh2);
-			ship3.setListLocations(listLocationsSh3);
-			ship4.setListLocations(listLocationsSh4);
-			ship5.setListLocations(listLocationsSh5);
-			ship6.setListLocations(listLocationsSh7);
-			ship8.setListLocations(listLocationsSh8);
-			ship9.setListLocations(listLocationsSh9);
-			ship10.setListLocations(listLocationsSh10);
-			ship11.setListLocations(listLocationsSh11);
-			ship12.setListLocations(listLocationsSh12);
-			ship13.setListLocations(listLocationsSh13);
-			ship14.setListLocations(listLocationsSh14);
-			ship15.setListLocations(listLocationsSh15);
-			ship16.setListLocations(listLocationsSh16);
-			ship17.setListLocations(listLocationsSh17);
-			ship18.setListLocations(listLocationsSh18);
-			ship19.setListLocations(listLocationsSh19);
-			ship20.setListLocations(listLocationsSh20);
-			ship21.setListLocations(listLocationsSh21);
-			ship22.setListLocations(listLocationsSh23);
-			ship24.setListLocations(listLocationsSh24);
-			ship25.setListLocations(listLocationsSh25);
-			ship26.setListLocations(listLocationsSh26);
-			ship27.setListLocations(listLocationsSh27);
+			ship1.setLocations(listLocationsSh1);
+			ship2.setLocations(listLocationsSh2);
+			ship3.setLocations(listLocationsSh3);
+			ship4.setLocations(listLocationsSh4);
+			ship5.setLocations(listLocationsSh5);
+			ship6.setLocations(listLocationsSh7);
+			ship8.setLocations(listLocationsSh8);
+			ship9.setLocations(listLocationsSh9);
+			ship10.setLocations(listLocationsSh10);
+			ship11.setLocations(listLocationsSh11);
+			ship12.setLocations(listLocationsSh12);
+			ship13.setLocations(listLocationsSh13);
+			ship14.setLocations(listLocationsSh14);
+			ship15.setLocations(listLocationsSh15);
+			ship16.setLocations(listLocationsSh16);
+			ship17.setLocations(listLocationsSh17);
+			ship18.setLocations(listLocationsSh18);
+			ship19.setLocations(listLocationsSh19);
+			ship20.setLocations(listLocationsSh20);
+			ship21.setLocations(listLocationsSh21);
+			ship22.setLocations(listLocationsSh23);
+			ship24.setLocations(listLocationsSh24);
+			ship25.setLocations(listLocationsSh25);
+			ship26.setLocations(listLocationsSh26);
+			ship27.setLocations(listLocationsSh27);
 
 			shipRepository.save(ship1);
 			shipRepository.save(ship2);
@@ -338,11 +337,11 @@ public class SalvoApplication {
 
 
 
-			salvo1.setListLocations(listLocationSal1);
-			salvo2.setListLocations(listLocationSal2);
-			salvo3.setListLocations(listLocationSal3);
+			salvo1.setLocations(listLocationSal1);
+			salvo2.setLocations(listLocationSal2);
+			salvo3.setLocations(listLocationSal3);
 
-			salvo4.setListLocations(listLocationSal4);
+			salvo4.setLocations(listLocationSal4);
 
 			salvoRepository.save(salvo1);
 			salvoRepository.save(salvo2);
