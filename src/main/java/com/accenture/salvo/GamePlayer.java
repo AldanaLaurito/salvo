@@ -149,7 +149,7 @@ public class GamePlayer {
 
     public List<Object> gamePlayerHits (){
         List<Object> listHits = new ArrayList<>();
-        listHits.add(this.salvoes.stream().map(Salvo::hits));
+        listHits.add(this.salvoes.stream().map(salvo -> salvo.hits(ships)));
         return listHits;
     }
 

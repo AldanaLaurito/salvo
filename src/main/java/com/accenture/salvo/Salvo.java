@@ -1,10 +1,7 @@
 package com.accenture.salvo;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 public class Salvo {
@@ -71,13 +68,18 @@ public class Salvo {
         return list;
     }
 
-    public Map<String, Object> hits (){
+    public Map<String, Object> hits(Set<Ship> ships){
         Map<String,Object> listHits = new HashMap<>();
+        listHits.put("turn",this.turn);
+        //this.locations.containsAll()
+        List<String> hitLocations = new ArrayList<>();
+        long missed = 0;
+
 
         return listHits;
     }
 
-    public Map<String, Object> damages (List<Object> hitLocations){
+    public Map<String, Object> damages (List<Object> hitLocations,Set<Ship> ships){
         Map<String,Object> listHits = new HashMap<>();
 
         return listHits;
