@@ -23,7 +23,7 @@ public class GamePlayer {
     Set<Ship> ships;
 
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Salvo> salvoes;
 
     @ManyToOne(fetch = FetchType.EAGER)

@@ -1,7 +1,5 @@
 package com.accenture.salvo;
 
-import com.accenture.salvo.GamePlayer;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +16,7 @@ public class Salvo {
 
     @ElementCollection
     @Column(name="listLocation")
-    private List<String> listLocations=new ArrayList<>();
+    private List<String> locations =new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gamePlayer_id")
@@ -29,7 +27,7 @@ public class Salvo {
     }
     public Salvo(long turn, GamePlayer gamePlayer) {
         this.turn=turn;
-        // this.listLocations=new ArrayList<>();
+        // this.locations=new ArrayList<>();
         this.gamePlayer=gamePlayer;
     }
 
@@ -49,12 +47,12 @@ public class Salvo {
         this.turn = turn;
     }
 
-    public List<String> getListLocations() {
-        return listLocations;
+    public List<String> getLocations() {
+        return locations;
     }
 
-    public void setListLocations(List<String> listLocations) {
-        this.listLocations = listLocations;
+    public void setLocations(List<String> locations) {
+        this.locations = locations;
     }
 
     public GamePlayer getGamePlayer() {
@@ -69,7 +67,7 @@ public class Salvo {
         Map<String,Object> list = new HashMap<>();
         list.put("turn", this.turn);
         list.put("player",this.gamePlayer.getPlayer().getId());
-        list.put("locations",this.listLocations);
+        list.put("locations",this.locations);
         return list;
     }
 }
