@@ -73,6 +73,7 @@ public class Salvo {
         listHits.put("turn",this.turn);
         //this.locations.containsAll()
         List<String> hitLocations = new ArrayList<>();
+        ships.stream().forEach(ship -> ship.getLocations().get());
         long missed = 0;
 
 
