@@ -70,4 +70,16 @@ public class Salvo {
         list.put("locations",this.locations);
         return list;
     }
+
+    public Map<String, Object> hits (){
+        Map<String,Object> listHits = new HashMap<>();
+
+        return listHits;
+    }
+
+    public Map<String, Object> damages (List<Object> hitLocations){
+        Map<String,Object> listHits = new HashMap<>();
+
+        return listHits;
+    }
 }

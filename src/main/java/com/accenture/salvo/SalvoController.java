@@ -168,13 +168,15 @@ public class SalvoController {
 
         Map<String, Object> list= new HashMap<String, Object>();
         GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
+        Game game = gamePlayer.getGame();
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())
         {
-            list.put("id",gamePlayer.getGame().getId());
-            list.put("created",gamePlayer.getGame().getGameDate());
-            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
+            list.put("id",game.getId());
+            list.put("created",game.getGameDate());
+            list.put("gamePlayers",game.gameDtoPlayers());
             list.put("ships", gamePlayer.gamePlayerShipsDto());
-            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
+            list.put("salvoes", game.gameDtoSalvo());
+            list.put("hits",gamePlayer.dtoHits());
             return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
         }
         else{

@@ -139,5 +139,19 @@ public class GamePlayer {
         salvo.setGamePlayer(this);
         this.salvoes.add(salvo);
     }
+    public Map<String,Object> dtoHits (){
+        Map<String,Object> hits = new HashMap<>();
+        GamePlayer opponent = this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
+        hits.put("self",this.gamePlayerHits());
+        hits.put("opponent",opponent.gamePlayerHits());
+        return  hits;
+    }
+
+    public List<Object> gamePlayerHits (){
+        List<Object> listHits = new ArrayList<>();
+        listHits.add(this.salvoes.stream().map(Salvo::hits));
+        return listHits;
+    }
+
 
 }
