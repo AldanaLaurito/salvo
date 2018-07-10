@@ -74,10 +74,64 @@ public class Salvo {
         listHits.put("turn",this.turn);
         List<String> hitLocations = new ArrayList<>();
         List<String> missLocations = new ArrayList<>();
-        List<String> salvoLocations=new ArrayList<>();
+        List<String> salvoLocations=this.locations;
+
+
+     /*ships.forEach(ship -> getLocations().forEach(location->{
+            for(int j=0;j<salvoLocations.size();j++){
+                //          listHits.put("location",ship.getLocations().get(i));
+                //          listHits.put("salvoLocation",salvoLocations.get(j));
+                String type = ship.getType();
+                Boolean hitted = false;
+                if (location==salvoLocations.get(j)){
+                    hitLocations.add(location);
+                    hitted = true;
+                }
+                else{
+                    missLocations.add(location);
+                }
+                switch (type){
+                    case "carrier":
+                        damages.put(type,damages.getOrDefault(type,0)+1);
+                        if (hitted){
+                            damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                        }
+                        break;
+                    case "battleship":
+                        damages.put(type,damages.getOrDefault(type,0)+1);
+                        if (hitted){
+                            damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                        }
+                        break;
+                    case "submarine":
+                        damages.put(type,damages.getOrDefault(type,0)+1);
+                        if (hitted){
+                            damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                        }
+                        break;
+                    case "destroyer":
+                        damages.put(type,damages.getOrDefault(type,0)+1);
+                        if (hitted){
+                            damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                        }
+                        break;
+                    case "patrolboat":
+                        damages.put(type,damages.getOrDefault(type,0)+1);
+                        if (hitted){
+                            damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                        }
+                        break;
+                }
+
+            }}));  */
+
+
         ships.forEach(ship -> {
                     for(int i=0; i<ship.getLocations().size();i++){
+                 //         listHits.put("location",ship.getLocations().get(i));
                         for(int j=0;j<salvoLocations.size();j++){
+                //          listHits.put("location",ship.getLocations().get(i));
+                //          listHits.put("salvoLocation",salvoLocations.get(j));
                             String type = ship.getType();
                             Boolean hitted = false;
                             if (ship.getLocations().get(i)==salvoLocations.get(j)){
