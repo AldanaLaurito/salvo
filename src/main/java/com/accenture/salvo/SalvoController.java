@@ -29,7 +29,7 @@ public class SalvoController {
 
     @RequestMapping(path = "/players",method = RequestMethod.POST)
     public ResponseEntity<Object> createPlayer(@RequestParam String email, @RequestParam String password){
-        Map<String,String> msg=new HashMap<>();
+        Map<String,String> msg=new LinkedHashMap<>();
 
         Player player = playerRepo.findByUserName(email);
         if (player != null) {
@@ -59,7 +59,7 @@ public class SalvoController {
     }
     @RequestMapping(path = "/game/{idGame}/players",method = RequestMethod.POST)
     public ResponseEntity<Object> joinGame(Authentication authentication,@PathVariable long idGame){
-        Map<String,Object> msg=new HashMap<>();
+        Map<String,Object> msg=new LinkedHashMap<>();
         Game game = repo.findById(idGame);
         if (isGuest(authentication)) {
             msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
@@ -81,7 +81,7 @@ public class SalvoController {
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/ships",method = RequestMethod.POST)
     public ResponseEntity<Object> placeShip(@RequestBody List <Ship> listShips,Authentication authentication,@PathVariable long gamePlayerId){
-        Map<String,Object> msgNet=new HashMap<>();
+        Map<String,Object> msgNet=new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| ((gamePlayer!=null) && (authentication.getName()!=gamePlayer.getPlayer().getUserName()))) {
@@ -99,7 +99,7 @@ public class SalvoController {
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/salvoes", method= RequestMethod.POST)
         public ResponseEntity<Map<String, Object>> setSalvoes(@PathVariable Long gamePlayerId, @RequestBody Salvo salvo, Authentication authentication) {
-        Map<String,Object> msgNet=new HashMap<>();
+        Map<String,Object> msgNet=new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| (gamePlayer!=null && authentication.getName()!=gamePlayer.getPlayer().getUserName())) {
@@ -166,7 +166,7 @@ public class SalvoController {
     @RequestMapping("/game_view/{idGamePlayer}")
     public ResponseEntity<Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
 
-        Map<String, Object> list= new HashMap<String, Object>();
+        Map<String, Object> list= new LinkedHashMap<String, Object>();
         GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
         Game game = gamePlayer.getGame();
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())

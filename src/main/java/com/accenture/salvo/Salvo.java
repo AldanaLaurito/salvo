@@ -61,7 +61,7 @@ public class Salvo {
     }
 
     public Map<String, Object> salvoDto(){
-        Map<String,Object> list = new HashMap<>();
+        Map<String,Object> list = new LinkedHashMap<>();
         list.put("turn", this.turn);
         list.put("player",this.gamePlayer.getPlayer().getId());
         list.put("locations",this.locations);
@@ -69,7 +69,7 @@ public class Salvo {
     }
 
     public Map<String, Object> hits(Set<Ship> ships){
-        Map<String,Object> listHits = new HashMap<>();
+        Map<String,Object> listHits = new LinkedHashMap<>();
         Map<String,Integer>damages = initializeDamages();
         listHits.put("turn",this.turn);
         List<String> hitLocations = new ArrayList<>();
@@ -143,33 +143,33 @@ public class Salvo {
                             }
                             switch (type){
                                 case "carrier":
-                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    damages.put(type,damages.get(type)+1);
                                     if (hitted){
-                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                        damages.put(type+"Hits",damages.get(type+"Hits")+1);
                                     }
                                     break;
                                 case "battleship":
-                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    damages.put(type,damages.get(type)+1);
                                     if (hitted){
-                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                        damages.put(type+"Hits",damages.get(type+"Hits")+1);
                                     }
                                     break;
                                 case "submarine":
-                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    damages.put(type,damages.get(type)+1);
                                     if (hitted){
-                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                        damages.put(type+"Hits",damages.get(type+"Hits")+1);
                                     }
                                     break;
                                 case "destroyer":
-                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    damages.put(type,damages.get(type)+1);
                                     if (hitted){
-                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                        damages.put(type+"Hits",damages.get(type+"Hits")+1);
                                     }
                                     break;
                                 case "patrolboat":
-                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    damages.put(type,damages.get(type)+1);
                                     if (hitted){
-                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                        damages.put(type+"Hits",damages.get(type+"Hits")+1);
                                     }
                                     break;
                             }
