@@ -142,8 +142,8 @@ public class GamePlayer {
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new LinkedHashMap<>();
         GamePlayer opponent = this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
-        hits.put("self",this.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
-        hits.put("opponent",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
+        hits.put("self",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
+        hits.put("opponent",this.salvoes.stream().map(salvo -> salvo.hits(opponent.ships)).toArray());
         return  hits;
 }
 
