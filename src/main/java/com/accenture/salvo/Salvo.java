@@ -70,32 +70,88 @@ public class Salvo {
 
     public Map<String, Object> hits(Set<Ship> ships){
         Map<String,Object> listHits = new HashMap<>();
+        Map<String,Integer>damages = initializeDamages();
         listHits.put("turn",this.turn);
-        //this.locations.containsAll()
         List<String> hitLocations = new ArrayList<>();
         List<String> missLocations = new ArrayList<>();
         List<String> salvoLocations=new ArrayList<>();
-        ships.stream()
-                .forEach(ship -> {
-                    for(int i=0; i<ship.getLocations().stream().count();i++){
-                        for(int j=0;j<salvoLocations.stream().count();j++){
+        ships.forEach(ship -> {
+                    for(int i=0; i<ship.getLocations().size();i++){
+                        for(int j=0;j<salvoLocations.size();j++){
+                            String type = ship.getType();
+                            Boolean hitted = false;
                             if (ship.getLocations().get(i)==salvoLocations.get(j)){
                                 hitLocations.add(ship.getLocations().get(i));
+                                hitted = true;
                             }
                             else{
                                 missLocations.add(ship.getLocations().get(i));
                             }
+                            switch (type){
+                                case "carrier":
+                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    if (hitted){
+                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                    }
+                                    break;
+                                case "battleship":
+                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    if (hitted){
+                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                    }
+                                    break;
+                                case "submarine":
+                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    if (hitted){
+                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                    }
+                                    break;
+                                case "destroyer":
+                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    if (hitted){
+                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                    }
+                                    break;
+                                case "patrolboat":
+                                    damages.put(type,damages.getOrDefault(type,0)+1);
+                                    if (hitted){
+                                        damages.put(type+"Hits",damages.get(type+"Hits"+1));
+                                    }
+                                    break;
+                            }
+
                         }
                     }});
 
-        long missed = missLocations.stream().count();
-
+        long missed = missLocations.size();
+        listHits.put("hitLocations",hitLocations);
+        listHits.put("damages",damages);
+        listHits.put("missed",missed);
         return listHits;
     }
 
-    public Map<String, Object> damages (List<Object> hitLocations,Set<Ship> ships){
-        Map<String,Object> listHits = new HashMap<>();
-
-        return listHits;
+    public Map<String,Integer> initializeDamages(){
+        Map<String,Integer>damages = new HashMap<>();
+        damages.put("carrierHits",0);
+        damages.put("carrier",0);
+        damages.put("battleshipHits",0);
+        damages.put("battleship",0);
+        damages.put("submarineHits",0);
+        damages.put("submarine",0);
+        damages.put("destroyer",0);
+        damages.put("destroyerHits",0);
+        damages.put("patrolboatHits",0);
+        damages.put("patrolboat",0);
+        return damages;
     }
+
+   public Map<String,Object> test (Set<Ship> ships){
+       Map<String,Object> listHits = new HashMap<>();
+       listHits.put("turn",this.turn);
+       ships.forEach(ship -> listHits.put("type",ship.getType()));
+
+       return listHits;
+
+
+   }
 }

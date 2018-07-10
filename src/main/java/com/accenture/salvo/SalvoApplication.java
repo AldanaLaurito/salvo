@@ -232,7 +232,7 @@ public class SalvoApplication {
 
 
 			Ship ship1 = new Ship("destroyer",gamePlayer1);
-			Ship ship2 = new Ship("patrol boat",gamePlayer1);
+			Ship ship2 = new Ship("patrolboat",gamePlayer1);
 			Ship ship3 = new Ship("battleship",gamePlayer1);
 			Ship ship4 = new Ship("carrier",gamePlayer2);
 			Ship ship5 = new Ship("submarine",gamePlayer2);

@@ -142,15 +142,9 @@ public class GamePlayer {
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new HashMap<>();
         GamePlayer opponent = this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
-        hits.put("self",this.gamePlayerHits());
-        hits.put("opponent",opponent.gamePlayerHits());
+        hits.put("self",this.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
+        hits.put("opponent",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
         return  hits;
-    }
-
-    public List<Object> gamePlayerHits (){
-        List<Object> listHits = new ArrayList<>();
-        listHits.add(this.salvoes.stream().map(salvo -> salvo.hits(ships)));
-        return listHits;
     }
 
 
