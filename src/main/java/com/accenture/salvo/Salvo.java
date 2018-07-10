@@ -73,69 +73,67 @@ public class Salvo {
         Map<String,Integer>damages = initializeDamages();
         listHits.put("turn",this.turn);
         List<String> hitLocations = new ArrayList<>();
-        List<Integer> missLocations = new ArrayList<>();
         List<String> salvoLocations=this.locations;
 
-
-        ships.forEach(ship -> {
+        for(Ship ship : ships) {
             int loop = 0;
-                    for(int i=0; i<ship.getLocations().size();i++){
-                        for (String salvoLocation : salvoLocations) {
-                            String type = ship.getType();
-                            Boolean hitted = false;
-                            if (ship.getLocations().get(i).equals(salvoLocation)) {
-                                hitLocations.add(ship.getLocations().get(i));
-                                hitted = true;
-                            }
-
-
-                            switch (type) {
-                                case "carrier":
-                                    if(loop==0) {
-                                        damages.put(type, damages.get(type) + 1);
-                                    }
-                                    if (hitted) {
-                                        damages.put(type + "Hits", damages.get(type + "Hits") + 1);
-                                    }
-                                    break;
-                                case "battleship":
-                                    if(loop==0) {
-                                        damages.put(type, damages.get(type) + 1);
-                                    }
-                                    if (hitted) {
-                                        damages.put(type + "Hits", damages.get(type + "Hits") + 1);
-                                    }
-                                    break;
-                                case "submarine":
-                                    if(loop==0) {
-                                        damages.put(type, damages.get(type) + 1);
-                                    }
-                                    if (hitted) {
-                                        damages.put(type + "Hits", damages.get(type + "Hits") + 1);
-                                    }
-                                    break;
-                                case "destroyer":
-                                    if(loop==0) {
-                                        damages.put(type, damages.get(type) + 1);
-                                    }
-                                    if (hitted) {
-                                        damages.put(type + "Hits", damages.get(type + "Hits") + 1);
-                                    }
-                                    break;
-                                case "patrolboat":
-                                    if(loop==0) {
-                                        damages.put(type, damages.get(type) + 1);
-                                    }
-                                    if (hitted) {
-                                        damages.put(type + "Hits", damages.get(type + "Hits") + 1);
-                                    }
-                                    break;
-                            }
-                            loop ++;
-                        }
+            for (int i = 0; i < ship.getLocations().size(); i++) {
+                for (String salvoLocation : salvoLocations) {
+                    String type = ship.getType();
+                    Boolean hitted = false;
+                    if (ship.getLocations().get(i).equals(salvoLocation)) {
+                        hitLocations.add(ship.getLocations().get(i));
+                        hitted = true;
                     }
 
-        });
+
+                    switch (type) {
+                        case "carrier":
+                            if (loop == 0) {
+                                damages.put(type, damages.get(type) + 1);
+                            }
+                            if (hitted) {
+                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                            }
+                            break;
+                        case "battleship":
+                            if (loop == 0) {
+                                damages.put(type, damages.get(type) + 1);
+                            }
+                            if (hitted) {
+                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                            }
+                            break;
+                        case "submarine":
+                            if (loop == 0) {
+                                damages.put(type, damages.get(type) + 1);
+                            }
+                            if (hitted) {
+                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                            }
+                            break;
+                        case "destroyer":
+                            if (loop == 0) {
+                                damages.put(type, damages.get(type) + 1);
+                            }
+                            if (hitted) {
+                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                            }
+                            break;
+                        case "patrolboat":
+                            if (loop == 0) {
+                                damages.put(type, damages.get(type) + 1);
+                            }
+                            if (hitted) {
+                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                            }
+                            break;
+                    }
+                    loop++;
+                }
+            }
+
+        }
         listHits.put("hitLocations",hitLocations);
         listHits.put("damages",damages);
         listHits.put("missed",salvoLocations.size() - hitLocations.size());

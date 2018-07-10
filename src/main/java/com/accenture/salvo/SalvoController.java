@@ -145,24 +145,6 @@ public class SalvoController {
        return  players.stream().map(Player::playerLeaderBoardDto).collect(Collectors.toList());
     }
 
-
-    /*@RequestMapping("/game_view/{idGamePlayer}")
-    public Map<String, Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
-        Map<String, Object> list= new HashMap<String, Object>();
-        GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
-        if(authentication.getName()==gamePlayer.getPlayer().getUserName())
-        {
-            list.put("id",gamePlayer.getGame().getId());
-            list.put("created",gamePlayer.getGame().getGameDate());
-            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
-            list.put("ships", gamePlayer.gamePlayerShipsDto());
-            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
-        }
-        else{
-            list.put("Forbidden",HttpStatus.UNAUTHORIZED);
-        }
-        return list;
-    }*/
     @RequestMapping("/game_view/{idGamePlayer}")
     public ResponseEntity<Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
 
