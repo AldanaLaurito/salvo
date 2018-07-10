@@ -139,7 +139,7 @@ public class Salvo {
                                 hitted = true;
                             }
                             else{
-                                missLocations.add(ship.getLocations().get(i));
+                                missLocations.add(salvoLocations.get(j));
                             }
                             switch (type){
                                 case "carrier":
