@@ -136,11 +136,9 @@ public class Salvo {
                     }
 
         });
-        missLocations.add(salvoLocations.size() - hitLocations.size());
-        long missed = missLocations.get(0);
         listHits.put("hitLocations",hitLocations);
         listHits.put("damages",damages);
-        listHits.put("missed",missed);
+        listHits.put("missed",salvoLocations.size() - hitLocations.size());
         return listHits;
     }
 

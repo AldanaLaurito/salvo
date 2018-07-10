@@ -145,7 +145,7 @@ public class GamePlayer {
         hits.put("self",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
         hits.put("opponent",this.salvoes.stream().map(salvo -> salvo.hits(opponent.ships)).toArray());
         return  hits;
-}
+    }
 
 
 }
