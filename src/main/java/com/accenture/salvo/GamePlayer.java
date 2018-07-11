@@ -159,12 +159,10 @@ public class GamePlayer {
             gameNotFinished=false;
         }
 
-
-
         if(this.ships.isEmpty()&& gameNotFinished){
             return "PLACESHIPS";
         }
-        else if(gameNotFinished && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty())){
+        else if(gameNotFinished && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
