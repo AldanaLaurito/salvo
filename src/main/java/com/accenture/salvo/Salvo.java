@@ -70,9 +70,52 @@ public class Salvo {
 
     public Map<String, Object> hits(Set<Ship> ships){
         Map<String,Object> listHits = new LinkedHashMap<>();
-        Map<String,Integer>damages = initializeDamages();
+        Map<String,Integer> damages = damagesMap(ships);
         listHits.put("turn",this.turn);
+        List<String> hitLocations = hitLocations(ships);
+        List<String> salvoLocations=this.locations;
+
+        listHits.put("hitLocations",hitLocations);
+        listHits.put("damages",damages);
+        listHits.put("missed",salvoLocations.size() - hitLocations.size());
+        return listHits;
+    }
+
+    private Map<String,Integer> initializeDamages(){
+        Map<String,Integer>damages = new HashMap<>();
+        damages.put("carrierHits",0);
+        damages.put("carrier",0);
+        damages.put("battleshipHits",0);
+        damages.put("battleship",0);
+        damages.put("submarineHits",0);
+        damages.put("submarine",0);
+        damages.put("destroyer",0);
+        damages.put("destroyerHits",0);
+        damages.put("patrolboatHits",0);
+        damages.put("patrolboat",0);
+        return damages;
+    }
+
+    public List<String> hitLocations (Set<Ship> ships){
         List<String> hitLocations = new ArrayList<>();
+        List<String> salvoLocations=this.locations;
+
+        for(Ship ship : ships) {
+            for (int i = 0; i < ship.getLocations().size(); i++) {
+                for (String salvoLocation : salvoLocations) {
+                    if (ship.getLocations().get(i).equals(salvoLocation)) {
+                        hitLocations.add(ship.getLocations().get(i));
+                    }
+
+                }
+            }
+
+        }
+        return hitLocations;
+    }
+
+    public Map<String,Integer> damagesMap(Set<Ship> ships){
+        Map<String,Integer>damages = initializeDamages();
         List<String> salvoLocations=this.locations;
 
         for(Ship ship : ships) {
@@ -82,7 +125,6 @@ public class Salvo {
                     String type = ship.getType();
                     Boolean hitted = false;
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
-                        hitLocations.add(ship.getLocations().get(i));
                         hitted = true;
                     }
 
@@ -134,26 +176,7 @@ public class Salvo {
             }
 
         }
-        listHits.put("hitLocations",hitLocations);
-        listHits.put("damages",damages);
-        listHits.put("missed",salvoLocations.size() - hitLocations.size());
-        return listHits;
-    }
-
-    private Map<String,Integer> initializeDamages(){
-        Map<String,Integer>damages = new HashMap<>();
-        damages.put("carrierHits",0);
-        damages.put("carrier",0);
-        damages.put("battleshipHits",0);
-        damages.put("battleship",0);
-        damages.put("submarineHits",0);
-        damages.put("submarine",0);
-        damages.put("destroyer",0);
-        damages.put("destroyerHits",0);
-        damages.put("patrolboatHits",0);
-        damages.put("patrolboat",0);
         return damages;
     }
-
 
 }

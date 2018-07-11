@@ -141,10 +141,40 @@ public class GamePlayer {
     }
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new LinkedHashMap<>();
-        GamePlayer opponent = this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
+        GamePlayer opponent = getOpponent();
         hits.put("self",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
         hits.put("opponent",this.salvoes.stream().map(salvo -> salvo.hits(opponent.ships)).toArray());
         return  hits;
+
+    }
+
+    public String gameState(){
+        GamePlayer opponent = getOpponent();
+        List<Long> turnsSelf = new ArrayList();
+        List<Long> turnsOpponent = new ArrayList();
+        boolean gameNotFinished=true;
+        if (this.getGame().getScores().size()>0){
+            gameNotFinished=false;
+        }
+
+        this.salvoes.stream().forEach(salvo -> turnsSelf.add(salvo.getTurn()));
+        opponent.salvoes.stream().forEach(salvo -> turnsOpponent.add(salvo.getTurn()));
+
+        
+
+        if(this.ships.isEmpty()&& gameNotFinished){
+            return "PLACESHIPS";
+        }
+        else if(gameNotFinished && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty())){
+            return "WAIT";
+        }
+        else {
+            return "PLAY";
+        }
+    }
+
+    public GamePlayer getOpponent (){
+        return this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
     }
 
 
