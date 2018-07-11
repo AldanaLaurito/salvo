@@ -81,20 +81,6 @@ public class Salvo {
         return listHits;
     }
 
-    private Map<String,Integer> initializeDamages(){
-        Map<String,Integer>damages = new HashMap<>();
-        damages.put("carrierHits",0);
-        damages.put("carrier",0);
-        damages.put("battleshipHits",0);
-        damages.put("battleship",0);
-        damages.put("submarineHits",0);
-        damages.put("submarine",0);
-        damages.put("destroyer",0);
-        damages.put("destroyerHits",0);
-        damages.put("patrolboatHits",0);
-        damages.put("patrolboat",0);
-        return damages;
-    }
 
     public List<String> hitLocations (Set<Ship> ships){
         List<String> hitLocations = new ArrayList<>();
@@ -176,6 +162,21 @@ public class Salvo {
             }
 
         }
+        return damages;
+    }
+
+    private Map<String,Integer> initializeDamages(){
+        Map<String,Integer>damages = new HashMap<>();
+        damages.put("carrierHits",0);
+        damages.put("carrier",0);
+        damages.put("battleshipHits",0);
+        damages.put("battleship",0);
+        damages.put("submarineHits",0);
+        damages.put("submarine",0);
+        damages.put("destroyer",0);
+        damages.put("destroyerHits",0);
+        damages.put("patrolboatHits",0);
+        damages.put("patrolboat",0);
         return damages;
     }
 

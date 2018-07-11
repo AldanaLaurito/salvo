@@ -150,17 +150,16 @@ public class GamePlayer {
 
     public String gameState(){
         GamePlayer opponent = getOpponent();
-        List<Long> turnsSelf = new ArrayList();
-        List<Long> turnsOpponent = new ArrayList();
+        List<Object> damagesSelf =opponent.salvoes.stream().map(salvo -> salvo.damagesMap(ships)).collect(Collectors.toList());
+        List<Object> damagesOpponent =this.salvoes.stream().map(salvo -> salvo.damagesMap(opponent.ships)).collect(Collectors.toList());
+        int lastTurnSelf = this.salvoes.size();
+        int lastTurnOpponent = opponent.salvoes.size();
         boolean gameNotFinished=true;
         if (this.getGame().getScores().size()>0){
             gameNotFinished=false;
         }
 
-        this.salvoes.stream().forEach(salvo -> turnsSelf.add(salvo.getTurn()));
-        opponent.salvoes.stream().forEach(salvo -> turnsOpponent.add(salvo.getTurn()));
 
-        
 
         if(this.ships.isEmpty()&& gameNotFinished){
             return "PLACESHIPS";
