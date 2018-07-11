@@ -106,6 +106,10 @@ public class SalvoController {
             msgNet.put("error","The salvo couldn´t be saved");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
+        else if(gamePlayer.getGame().getScores().size()>0){
+            msgNet.put("error","The game is over");
+            return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
+        }
 
         else if((gamePlayer.getSalvoes().stream().filter(salvo1 -> salvo1.getTurn()==salvo.getTurn()).count()!=0)||(gamePlayer.getSalvoes().stream().count()==5)){
             msgNet.put("error","The user has already placed a salvo in this turn");
@@ -155,6 +159,7 @@ public class SalvoController {
         {
             list.put("id",game.getId());
             list.put("created",game.getGameDate());
+            list.put("gameState","TIE");
             list.put("gamePlayers",game.gameDtoPlayers());
             list.put("ships", gamePlayer.gamePlayerShipsDto());
             list.put("salvoes", game.gameDtoSalvo());

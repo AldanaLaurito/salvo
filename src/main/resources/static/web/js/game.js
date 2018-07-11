@@ -80,6 +80,16 @@ function refreshGameView(_url) {
             }
             if (gamePlayerData.gameState === "WAITINGFOROPP"){
                 $('#battleGrids').show('puff', 'slow');
+              //  $('#salvoBlock').hide('puff', 'slow'); //I copy this from waitState from if (gamePlayerData.gameState === "WAIT"){
+              //  $('#gameRecordBlock').show('puff', 'slow'); //I copy this from waitState from if (gamePlayerData.gameState === "WAIT"){
+                waitState = true;
+                                setTimeout(
+                                    function()
+                                    {
+                                        refreshGameView(makeUrl());
+                                        console.log("...refreshing gameview...");
+
+                                    }, 5000); //I copy the waitState from if (gamePlayerData.gameState === "WAIT"){
             }
 
             if (gamePlayerData.gameState === "WON"){
