@@ -29,7 +29,7 @@ public class SalvoController {
 
     @RequestMapping(path = "/players",method = RequestMethod.POST)
     public ResponseEntity<Object> createPlayer(@RequestParam String email, @RequestParam String password){
-        Map<String,String> msg=new HashMap<>();
+        Map<String,String> msg=new LinkedHashMap<>();
 
         Player player = playerRepo.findByUserName(email);
         if (player != null) {
@@ -46,8 +46,8 @@ public class SalvoController {
         Map<String,Object> msg=new HashMap<>();
 
         if (isGuest(authentication)) {
-            msg.put("error","No user has logged");
-            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         Game game = new Game();
         repo.save(game);
@@ -59,15 +59,15 @@ public class SalvoController {
     }
     @RequestMapping(path = "/game/{idGame}/players",method = RequestMethod.POST)
     public ResponseEntity<Object> joinGame(Authentication authentication,@PathVariable long idGame){
-        Map<String,Object> msg=new HashMap<>();
+        Map<String,Object> msg=new LinkedHashMap<>();
         Game game = repo.findById(idGame);
         if (isGuest(authentication)) {
-            msg.put("error","No user has logged");
-            return new ResponseEntity<>(msg, HttpStatus.UNAUTHORIZED);
+            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         else if(game==null){
             msg.put("error","No such game");
-            return new ResponseEntity<>(msg, HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
         else if(game.getGamePlayers().stream().count()==2){
             msg.put("error","Game is full");
@@ -81,7 +81,7 @@ public class SalvoController {
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/ships",method = RequestMethod.POST)
     public ResponseEntity<Object> placeShip(@RequestBody List <Ship> listShips,Authentication authentication,@PathVariable long gamePlayerId){
-        Map<String,Object> msgNet=new HashMap<>();
+        Map<String,Object> msgNet=new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| ((gamePlayer!=null) && (authentication.getName()!=gamePlayer.getPlayer().getUserName()))) {
@@ -92,20 +92,22 @@ public class SalvoController {
             msgNet.put("error","The user has already placed their ships");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
-        listShips.forEach(ship -> ship.setGamePlayer(gamePlayer));
-        shipRepo.save(listShips);
-        gamePlayer.setShips(listShips.stream().collect(Collectors.toSet()));
+        gamePlayer.setShip(listShips);
         gamePlayerRepo.save(gamePlayer);
         msgNet.put("success","The ships were successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/salvoes", method= RequestMethod.POST)
         public ResponseEntity<Map<String, Object>> setSalvoes(@PathVariable Long gamePlayerId, @RequestBody Salvo salvo, Authentication authentication) {
-        Map<String,Object> msgNet=new HashMap<>();
+        Map<String,Object> msgNet=new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| (gamePlayer!=null && authentication.getName()!=gamePlayer.getPlayer().getUserName())) {
             msgNet.put("error","The salvo couldn´t be saved");
+            return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
+        }
+        else if(gamePlayer.getGame().getScores().size()>0){
+            msgNet.put("error","The game is over");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
 
@@ -113,9 +115,7 @@ public class SalvoController {
             msgNet.put("error","The user has already placed a salvo in this turn");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
-        salvo.setGamePlayer(gamePlayer);
-           salvoRepo.save(salvo);
-            gamePlayer.getSalvoes().add(salvo);
+        gamePlayer.setSalvo(salvo);
         gamePlayerRepo.save(gamePlayer);
         msgNet.put("success","The salvo was successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
@@ -149,36 +149,21 @@ public class SalvoController {
        return  players.stream().map(Player::playerLeaderBoardDto).collect(Collectors.toList());
     }
 
-
-    /*@RequestMapping("/game_view/{idGamePlayer}")
-    public Map<String, Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
-        Map<String, Object> list= new HashMap<String, Object>();
-        GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
-        if(authentication.getName()==gamePlayer.getPlayer().getUserName())
-        {
-            list.put("id",gamePlayer.getGame().getId());
-            list.put("created",gamePlayer.getGame().getGameDate());
-            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
-            list.put("ships", gamePlayer.gamePlayerShipsDto());
-            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
-        }
-        else{
-            list.put("Forbidden",HttpStatus.UNAUTHORIZED);
-        }
-        return list;
-    }*/
     @RequestMapping("/game_view/{idGamePlayer}")
     public ResponseEntity<Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
 
-        Map<String, Object> list= new HashMap<String, Object>();
+        Map<String, Object> list= new LinkedHashMap<String, Object>();
         GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
+        Game game = gamePlayer.getGame();
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())
         {
-            list.put("id",gamePlayer.getGame().getId());
-            list.put("created",gamePlayer.getGame().getGameDate());
-            list.put("gamePlayers",gamePlayer.getGame().gameDtoPlayers());
+            list.put("id",game.getId());
+            list.put("created",game.getGameDate());
+            list.put("gameState","TIE");
+            list.put("gamePlayers",game.gameDtoPlayers());
             list.put("ships", gamePlayer.gamePlayerShipsDto());
-            list.put("salvoes", gamePlayer.getGame().gameDtoSalvo());
+            list.put("salvoes", game.gameDtoSalvo());
+            list.put("hits",gamePlayer.dtoHits());
             return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
         }
         else{
@@ -195,5 +180,9 @@ public class SalvoController {
         return authentication == null || authentication.getName()=="anonymousUser" || authentication instanceof AnonymousAuthenticationToken;
     }
 
+    public final class ErrorsMsg  {
+        public static final String KEY_ERROR= "error";
+        public static final String MSG_ERROR_NO_USER = "No user has logged";
+    }
 
 }

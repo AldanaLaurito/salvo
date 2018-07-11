@@ -19,11 +19,11 @@ public class GamePlayer {
 
 
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Ship> ships;
 
 
-    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     Set<Salvo> salvoes;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -88,7 +88,7 @@ public class GamePlayer {
 
 
     public Map<String, Object> gamePlayerDto(){
-        Map<String,Object> list = new HashMap<>();
+        Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
         list.put("player",this.player.playerDto());
         list.put("joinDate",game.getGameDate());
@@ -98,7 +98,7 @@ public class GamePlayer {
         return list;
     }
     public Map<String, Object> gamePlayerDtoNoShips(){
-        Map<String,Object> list = new HashMap<>();
+        Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
         list.put("player",this.player.playerDto());
         list.put("joinDate",game.getGameDate());
@@ -117,7 +117,7 @@ public class GamePlayer {
                 .collect(Collectors.toList());
     }
     public Map<String, Object> gamePlayerDtoPlayers(){
-        Map<String,Object> list = new HashMap<>();
+        Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
         list.put("joinDate", this.creationDate);
         list.put("player",this.player.playerDto());
@@ -128,5 +128,24 @@ public class GamePlayer {
        return this.game.getScores().stream()
                .findFirst().get();
     }
+    public void setShip(List<Ship> ships) {
+        ships.forEach(ship ->{
+            ship.setGamePlayer(this);
+            this.ships.add(ship);
+        });
+    }
+
+    public void setSalvo(Salvo salvo) {
+        salvo.setGamePlayer(this);
+        this.salvoes.add(salvo);
+    }
+    public Map<String,Object> dtoHits (){
+        Map<String,Object> hits = new LinkedHashMap<>();
+        GamePlayer opponent = this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
+        hits.put("self",opponent.salvoes.stream().map(salvo -> salvo.hits(ships)).toArray());
+        hits.put("opponent",this.salvoes.stream().map(salvo -> salvo.hits(opponent.ships)).toArray());
+        return  hits;
+    }
+
 
 }
