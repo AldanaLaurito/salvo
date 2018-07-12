@@ -207,44 +207,44 @@ public class GamePlayer {
                 Integer value = entry.getValue();
                 switch (key){
                     case "carrier":
-                        if(value>0){
+                        if(value>0 && (!(shipsTypes.contains(key)))){
                             shipsTypes.add(key);
                         }
                         break;
                     case "battleship":
-                        if(value>0){
+                        if(value>0 && (!(shipsTypes.contains(key)))){
                             shipsTypes.add(key);
                         }
                         break;
                     case "submarine":
-                        if(value>0){
+                        if(value>0 && (!(shipsTypes.contains(key)))){
                             shipsTypes.add(key);
                         }
                         break;
                     case "destroyer":
-                        if(value>0){
+                        if(value>0 && (!(shipsTypes.contains(key)))){
                             shipsTypes.add(key);
                         }
                         break;
                     case "patrolboat":
-                        if(value>0){
+                        if(value>0 && (!(shipsTypes.contains(key)))){
                             shipsTypes.add(key);
                         }
                         break;
                      case "carrierHits":
-                         shipsHits.put("carrier", shipsHits.get("carrier") + 1);
+                         shipsHits.put("carrier", shipsHits.get("carrier") + value);
                         break;
                     case "battleshipHits":
-                        shipsHits.put("battleship", shipsHits.get("battleship") + 1);
+                        shipsHits.put("battleship", shipsHits.get("battleship") + value);
                         break;
                     case "submarineHits":
-                        shipsHits.put("submarine", shipsHits.get("submarine") + 1);
+                        shipsHits.put("submarine", shipsHits.get("submarine") + value);
                         break;
                     case "destroyerHits":
-                        shipsHits.put("destroyer", shipsHits.get("destroyer") + 1);
+                        shipsHits.put("destroyer", shipsHits.get("destroyer") + value);
                         break;
                     case "patrolboatHits":
-                        shipsHits.put("patrolboat", shipsHits.get("patrolboat") + 1);
+                        shipsHits.put("patrolboat", shipsHits.get("patrolboat") + value);
                         break;
                 }
 
