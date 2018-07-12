@@ -13,7 +13,7 @@ public class Salvo {
 
     @ElementCollection
     @Column(name="listLocation")
-    private List<String> locations =new ArrayList<>();
+    private List<String> salvoLocations =new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="gamePlayer_id")
@@ -45,11 +45,14 @@ public class Salvo {
     }
 
     public List<String> getLocations() {
-        return locations;
+        return salvoLocations;
     }
 
     public void setLocations(List<String> locations) {
-        this.locations = locations;
+        this.salvoLocations = locations;
+    }
+    public void setSalvoLocations(List<String> locations) {
+        this.salvoLocations = locations;
     }
 
     public GamePlayer getGamePlayer() {
@@ -64,7 +67,7 @@ public class Salvo {
         Map<String,Object> list = new LinkedHashMap<>();
         list.put("turn", this.turn);
         list.put("player",this.gamePlayer.getPlayer().getId());
-        list.put("locations",this.locations);
+        list.put("locations",this.salvoLocations);
         return list;
     }
 
@@ -73,7 +76,7 @@ public class Salvo {
         Map<String,Integer> damages = damagesMap(ships);
         listHits.put("turn",this.turn);
         List<String> hitLocations = hitLocations(ships);
-        List<String> salvoLocations=this.locations;
+        List<String> salvoLocations=this.salvoLocations;
 
         listHits.put("hitLocations",hitLocations);
         listHits.put("damages",damages);
@@ -84,7 +87,7 @@ public class Salvo {
 
     public List<String> hitLocations (Set<Ship> ships){
         List<String> hitLocations = new ArrayList<>();
-        List<String> salvoLocations=this.locations;
+        List<String> salvoLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             for (int i = 0; i < ship.getLocations().size(); i++) {
@@ -102,7 +105,7 @@ public class Salvo {
 
     public Map<String,Integer> damagesMap(Set<Ship> ships){
         Map<String,Integer>damages = initializeDamages();
-        List<String> salvoLocations=this.locations;
+        List<String> salvoLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             int loop = 0;

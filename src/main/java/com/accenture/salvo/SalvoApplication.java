@@ -190,9 +190,9 @@ public class SalvoApplication {
 			listLocationsSh17.add("H6");
 
 			List<String> listLocationsSh18 = new ArrayList<>();
-			listLocationsSh17.add("B5");
-			listLocationsSh17.add("C5");
-			listLocationsSh17.add("D5");
+			listLocationsSh18.add("B5");
+			listLocationsSh18.add("C5");
+			listLocationsSh18.add("D5");
 			List<String> listLocationsSh19 = new ArrayList<>();
 			listLocationsSh19.add("C6");
 			listLocationsSh19.add("C7");
@@ -265,7 +265,8 @@ public class SalvoApplication {
 			ship3.setLocations(listLocationsSh3);
 			ship4.setLocations(listLocationsSh4);
 			ship5.setLocations(listLocationsSh5);
-			ship6.setLocations(listLocationsSh7);
+			ship6.setLocations(listLocationsSh6);
+			ship7.setLocations(listLocationsSh7);
 			ship8.setLocations(listLocationsSh8);
 			ship9.setLocations(listLocationsSh9);
 			ship10.setLocations(listLocationsSh10);
@@ -280,7 +281,8 @@ public class SalvoApplication {
 			ship19.setLocations(listLocationsSh19);
 			ship20.setLocations(listLocationsSh20);
 			ship21.setLocations(listLocationsSh21);
-			ship22.setLocations(listLocationsSh23);
+			ship22.setLocations(listLocationsSh22);
+			ship23.setLocations(listLocationsSh23);
 			ship24.setLocations(listLocationsSh24);
 			ship25.setLocations(listLocationsSh25);
 			ship26.setLocations(listLocationsSh26);

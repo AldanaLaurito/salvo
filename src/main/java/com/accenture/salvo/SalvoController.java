@@ -80,7 +80,7 @@ public class SalvoController {
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/ships",method = RequestMethod.POST)
-    public ResponseEntity<Object> placeShip(@RequestBody List <Ship> listShips,Authentication authentication,@PathVariable long gamePlayerId){
+    public ResponseEntity<Object> placeShip(Authentication authentication,@RequestBody List <Ship> listShips,@PathVariable long gamePlayerId){
         Map<String,Object> msgNet=new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
