@@ -149,20 +149,28 @@ public class GamePlayer {
     }
 
     public String gameState(){
+
         GamePlayer opponent = getOpponent();
-        List<Object> damagesSelf =opponent.salvoes.stream().map(salvo -> salvo.damagesMap(ships)).collect(Collectors.toList());
-        List<Object> damagesOpponent =this.salvoes.stream().map(salvo -> salvo.damagesMap(opponent.ships)).collect(Collectors.toList());
         int lastTurnSelf = this.salvoes.size();
         int lastTurnOpponent = opponent.salvoes.size();
-        boolean gameNotFinished=true;
-        if (this.getGame().getScores().size()>0){
-            gameNotFinished=false;
-        }
 
-        if(this.ships.isEmpty()&& gameNotFinished){
+        boolean gamePlayerSelfLost = this.GamePlayerLost();
+        boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
+
+
+        if(this.ships.isEmpty()&& (this.getGame().getScores().size()>0)){
             return "PLACESHIPS";
         }
-        else if(gameNotFinished && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
+        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost){
+                return "LOST";
+        }
+        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost){
+            return "WON";
+        }
+        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf)){
+            return "TIE";
+        }
+        else if((this.getGame().getScores().size()>0) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
@@ -172,6 +180,93 @@ public class GamePlayer {
 
     public GamePlayer getOpponent (){
         return this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
+    }
+
+    public boolean GamePlayerLost (){
+        Map<String,Integer> shipsLength = new LinkedHashMap<>();
+        shipsLength.put("carrier",5);
+        shipsLength.put("battleship",4);
+        shipsLength.put("submarine",3);
+        shipsLength.put("destroyer",3);
+        shipsLength.put("patrolboat",2);
+
+        Map<String,Integer> shipsHits = new LinkedHashMap<>();
+        shipsHits.put("carrier",0);
+        shipsHits.put("battleship",0);
+        shipsHits.put("submarine",0);
+        shipsHits.put("destroyer",0);
+        shipsHits.put("patrolboat",0);
+
+        List<String> shipsTypes=new ArrayList<>();
+        List<String> shipsLost = new ArrayList<>();
+        GamePlayer opponent = getOpponent();
+        List<Map<String, Integer>> damages =this.salvoes.stream().map(salvo -> salvo.damagesMap(opponent.ships)).collect(Collectors.toList());
+        for (Map<String, Integer> map : damages) {
+            for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                switch (key){
+                    case "carrier":
+                        if(value>0){
+                            shipsTypes.add(key);
+                        }
+                        break;
+                    case "battleship":
+                        if(value>0){
+                            shipsTypes.add(key);
+                        }
+                        break;
+                    case "submarine":
+                        if(value>0){
+                            shipsTypes.add(key);
+                        }
+                        break;
+                    case "destroyer":
+                        if(value>0){
+                            shipsTypes.add(key);
+                        }
+                        break;
+                    case "patrolboat":
+                        if(value>0){
+                            shipsTypes.add(key);
+                        }
+                        break;
+                     case "carrierHits":
+                         shipsHits.put("carrier", shipsHits.get("carrier") + 1);
+                        break;
+                    case "battleshipHits":
+                        shipsHits.put("battleship", shipsHits.get("battleship") + 1);
+                        break;
+                    case "submarineHits":
+                        shipsHits.put("submarine", shipsHits.get("submarine") + 1);
+                        break;
+                    case "destroyerHits":
+                        shipsHits.put("destroyer", shipsHits.get("destroyer") + 1);
+                        break;
+                    case "patrolboatHits":
+                        shipsHits.put("patrolboat", shipsHits.get("patrolboat") + 1);
+                        break;
+                }
+
+
+            }
+        }
+        for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {
+            String shipType = entry.getKey();
+            Integer hits = entry.getValue();
+
+            if((shipsLength.get(shipType))==hits){
+                shipsLost.add(shipType);
+            }
+        }
+
+        if(shipsLost.size()==shipsTypes.size()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
     }
 
 

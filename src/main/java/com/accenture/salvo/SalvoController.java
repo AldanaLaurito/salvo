@@ -159,7 +159,7 @@ public class SalvoController {
         {
             list.put("id",game.getId());
             list.put("created",game.getGameDate());
-            list.put("gameState","WAIT");
+            list.put("gameState",gamePlayer.gameState());
             list.put("gamePlayers",game.gameDtoPlayers());
             list.put("ships", gamePlayer.gamePlayerShipsDto());
             list.put("salvoes", game.gameDtoSalvo());
