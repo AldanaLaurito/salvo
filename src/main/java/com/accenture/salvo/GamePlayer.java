@@ -158,16 +158,20 @@ public class GamePlayer {
         boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
 
 
-        if(this.ships.isEmpty()&& (this.getGame().getScores().size()>0)){
+        if(this.ships.isEmpty()&& !(this.getGame().getScores().size()>0)){
             return "PLACESHIPS";
         }
-        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost){
+        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && (this.getGame().getScores().size()>0)){
+            this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
                 return "LOST";
         }
-        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost){
+        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && (this.getGame().getScores().size()>0)){
+            this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
             return "WON";
         }
-        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf)){
+        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && (this.getGame().getScores().size()>0)){
+            this.game.getScores().add(new Score(0.5,new Date(),this.game,opponent.getPlayer()));
+            this.game.getScores().add(new Score(0.5,new Date(),this.game,this.getPlayer()));
             return "TIE";
         }
         else if((this.getGame().getScores().size()>0) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
@@ -200,7 +204,7 @@ public class GamePlayer {
         List<String> shipsTypes=new ArrayList<>();
         List<String> shipsLost = new ArrayList<>();
         GamePlayer opponent = getOpponent();
-        List<Map<String, Integer>> damages =this.salvoes.stream().map(salvo -> salvo.damagesMap(opponent.ships)).collect(Collectors.toList());
+        List<Map<String, Integer>> damages =opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships)).collect(Collectors.toList());
         for (Map<String, Integer> map : damages) {
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
                 String key = entry.getKey();
