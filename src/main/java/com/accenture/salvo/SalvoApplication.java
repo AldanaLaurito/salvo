@@ -232,32 +232,32 @@ public class SalvoApplication {
 
 
 			Ship ship1 = new Ship("destroyer",gamePlayer1);
-			Ship ship2 = new Ship("patrolboat",gamePlayer1);
-			Ship ship3 = new Ship("battleship",gamePlayer1);
-			Ship ship4 = new Ship("carrier",gamePlayer2);
-			Ship ship5 = new Ship("submarine",gamePlayer2);
-			Ship ship6 = new Ship("battleship",gamePlayer3);
-			Ship ship7 = new Ship("battleship",gamePlayer3);
-			Ship ship8 = new Ship("battleship",gamePlayer4);
-			Ship ship9 = new Ship("battleship",gamePlayer4);
-			Ship ship10 = new Ship("battleship",gamePlayer5);
-			Ship ship11 = new Ship("battleship",gamePlayer5);
-			Ship ship12 = new Ship("battleship",gamePlayer6);
-			Ship ship13 = new Ship("battleship",gamePlayer6);
-			Ship ship14 = new Ship("battleship",gamePlayer7);
-			Ship ship15 = new Ship("battleship",gamePlayer7);
-			Ship ship16 = new Ship("battleship",gamePlayer8);
-			Ship ship17 = new Ship("battleship",gamePlayer8);
-			Ship ship18 = new Ship("battleship",gamePlayer9);
-			Ship ship19 = new Ship("battleship",gamePlayer9);
-			Ship ship20 = new Ship("battleship",gamePlayer10);
-			Ship ship21 = new Ship("battleship",gamePlayer10);
-			Ship ship22 = new Ship("battleship",gamePlayer11);
-			Ship ship23 = new Ship("battleship",gamePlayer11);
-			Ship ship24 = new Ship("battleship",gamePlayer13);
-			Ship ship25 = new Ship("battleship",gamePlayer13);
-			Ship ship26 = new Ship("battleship",gamePlayer14);
-			Ship ship27 = new Ship("battleship",gamePlayer14);
+			Ship ship2 = new Ship("submarine",gamePlayer1);
+			Ship ship3 = new Ship("patrolboat",gamePlayer1);
+			Ship ship4 = new Ship("destroyer",gamePlayer2);
+			Ship ship5 = new Ship("patrolboat",gamePlayer2);
+			Ship ship6 = new Ship("destroyer",gamePlayer3);
+			Ship ship7 = new Ship("patrolboat",gamePlayer3);
+			Ship ship8 = new Ship("submarine",gamePlayer4);
+			Ship ship9 = new Ship("patrolboat",gamePlayer4);
+			Ship ship10 = new Ship("destroyer",gamePlayer5);
+			Ship ship11 = new Ship("patrolboat",gamePlayer5);
+			Ship ship12 = new Ship("submarine",gamePlayer6);
+			Ship ship13 = new Ship("patrolboat",gamePlayer6);
+			Ship ship14 = new Ship("destroyer",gamePlayer7);
+			Ship ship15 = new Ship("patrolboat",gamePlayer7);
+			Ship ship16 = new Ship("submarine",gamePlayer8);
+			Ship ship17 = new Ship("patrolboat",gamePlayer8);
+			Ship ship18 = new Ship("destroyer",gamePlayer9);
+			Ship ship19 = new Ship("patrolboat",gamePlayer9);
+			Ship ship20 = new Ship("submarine",gamePlayer10);
+			Ship ship21 = new Ship("patrolboat",gamePlayer10);
+			Ship ship22 = new Ship("destroyer",gamePlayer11);
+			Ship ship23 = new Ship("patrolboat",gamePlayer11);
+			Ship ship24 = new Ship("destroyer",gamePlayer13);
+			Ship ship25 = new Ship("patrolboat",gamePlayer13);
+			Ship ship26 = new Ship("submarine",gamePlayer14);
+			Ship ship27 = new Ship("patrolboat",gamePlayer14);
 
 
 			ship1.setLocations(listLocationsSh1);
@@ -314,11 +314,38 @@ public class SalvoApplication {
 			shipRepository.save(ship26);
 			shipRepository.save(ship27);
 
+			//Game 1
 			Salvo salvo1 = new Salvo(1,gamePlayer1);
 			Salvo salvo2 = new Salvo(2,gamePlayer1);
 			Salvo salvo3 = new Salvo(1,gamePlayer2);
 			Salvo salvo4 = new Salvo(2,gamePlayer2);
 
+			//Game 2
+			Salvo salvo5 = new Salvo(1,gamePlayer3);
+			Salvo salvo6 = new Salvo(1,gamePlayer4);
+			Salvo salvo7 = new Salvo(2,gamePlayer3);
+			Salvo salvo8 = new Salvo(2,gamePlayer4);
+
+			//Game 3
+			Salvo salvo9 = new Salvo(1,gamePlayer5);
+			Salvo salvo10 = new Salvo(1,gamePlayer6);
+			Salvo salvo11 = new Salvo(2,gamePlayer5);
+			Salvo salvo12 = new Salvo(2,gamePlayer6);
+
+			//Game 4
+			Salvo salvo13 = new Salvo(1,gamePlayer7);
+			Salvo salvo14 = new Salvo(1,gamePlayer8);
+			Salvo salvo15 = new Salvo(2,gamePlayer7);
+			Salvo salvo16 = new Salvo(2,gamePlayer8);
+
+			//Game 5
+			Salvo salvo17 = new Salvo(1,gamePlayer9);
+			Salvo salvo18 = new Salvo(1,gamePlayer10);
+			Salvo salvo19 = new Salvo(2,gamePlayer9);
+			Salvo salvo20 = new Salvo(2,gamePlayer10);
+			Salvo salvo21 = new Salvo(3,gamePlayer10);
+
+			//Game 1
 			List<String> listLocationSal1 = new ArrayList<>();
             listLocationSal1.add("B5");
             listLocationSal1.add("C5");
@@ -335,19 +362,131 @@ public class SalvoApplication {
 			listLocationSal4 .add("H3");
 			listLocationSal4 .add("A2");
 
+			//Game 2
+			List<String> listLocationSal5 = new ArrayList<>();
+			listLocationSal5.add("A2");
+			listLocationSal5.add("A4");
+			listLocationSal5.add("G6");
+			List<String> listLocationSal6 = new ArrayList<>();
+			listLocationSal6.add("B5");
+			listLocationSal6.add("D5");
+			listLocationSal6.add("C7");
+			List<String> listLocationSal7 = new ArrayList<>();
+			listLocationSal7.add("A3");
+			listLocationSal7.add("H6");
+			List<String> listLocationSal8 = new ArrayList<>();
+			listLocationSal8 .add("C5");
+			listLocationSal8 .add("C6");
+
+			//Game 3
+			List<String> listLocationSal9 = new ArrayList<>();
+			listLocationSal9.add("G6");
+			listLocationSal9.add("H6");
+			listLocationSal9.add("A4");
+			List<String> listLocationSal10 = new ArrayList<>();
+			listLocationSal10.add("H1");
+			listLocationSal10.add("H2");
+			listLocationSal10.add("H3");
+			List<String> listLocationSal11 = new ArrayList<>();
+			listLocationSal11.add("A2");
+			listLocationSal11.add("A3");
+			listLocationSal11.add("D8");
+			List<String> listLocationSal12 = new ArrayList<>();
+			listLocationSal12.add("E1");
+			listLocationSal12.add("F2");
+			listLocationSal12.add("G3");
+
+			//Game 4
+			List<String> listLocationSal13 = new ArrayList<>();
+			listLocationSal13.add("A3");
+			listLocationSal13.add("A4");
+			listLocationSal13.add("F7");
+			List<String> listLocationSal14 = new ArrayList<>();
+			listLocationSal14.add("B5");
+			listLocationSal14.add("C6");
+			listLocationSal14.add("H1");
+			List<String> listLocationSal15 = new ArrayList<>();
+			listLocationSal15.add("A2");
+			listLocationSal15.add("G6");
+			listLocationSal15.add("H6");
+			List<String> listLocationSal16 = new ArrayList<>();
+			listLocationSal16 .add("C5");
+			listLocationSal16.add("C7");
+			listLocationSal16 .add("D5");
+
+			//Game 5
+			List<String> listLocationSal17 = new ArrayList<>();
+			listLocationSal17.add("A1");
+			listLocationSal17.add("A2");
+			listLocationSal17.add("A3");
+			List<String> listLocationSal18 = new ArrayList<>();
+			listLocationSal18.add("B5");
+			listLocationSal18.add("B6");
+			listLocationSal18.add("C7");
+			List<String> listLocationSal19 = new ArrayList<>();
+			listLocationSal19.add("G6");
+			listLocationSal19.add("G7");
+			listLocationSal19.add("G8");
+			List<String> listLocationSal20 = new ArrayList<>();
+			listLocationSal20 .add("C6");
+			listLocationSal20 .add("D6");
+			listLocationSal20 .add("E6");
+			List<String> listLocationSal21 = new ArrayList<>();
+			listLocationSal21 .add("H1");
+			listLocationSal21 .add("H8");
 
 
 			salvo1.setLocations(listLocationSal1);
 			salvo2.setLocations(listLocationSal2);
 			salvo3.setLocations(listLocationSal3);
-
 			salvo4.setLocations(listLocationSal4);
+
+			salvo5.setLocations(listLocationSal5);
+			salvo6.setLocations(listLocationSal6);
+			salvo7.setLocations(listLocationSal7);
+			salvo8.setLocations(listLocationSal8);
+
+			salvo9.setLocations(listLocationSal9);
+			salvo10.setLocations(listLocationSal10);
+			salvo11.setLocations(listLocationSal11);
+			salvo12.setLocations(listLocationSal12);
+
+			salvo13.setLocations(listLocationSal13);
+			salvo14.setLocations(listLocationSal14);
+			salvo15.setLocations(listLocationSal15);
+			salvo16.setLocations(listLocationSal16);
+
+			salvo17.setLocations(listLocationSal17);
+			salvo18.setLocations(listLocationSal18);
+			salvo19.setLocations(listLocationSal19);
+			salvo20.setLocations(listLocationSal20);
+			salvo21.setLocations(listLocationSal21);
 
 			salvoRepository.save(salvo1);
 			salvoRepository.save(salvo2);
 			salvoRepository.save(salvo3);
 			salvoRepository.save(salvo4);
 
+			salvoRepository.save(salvo5);
+			salvoRepository.save(salvo6);
+			salvoRepository.save(salvo7);
+			salvoRepository.save(salvo8);
+
+			salvoRepository.save(salvo9);
+			salvoRepository.save(salvo10);
+			salvoRepository.save(salvo11);
+			salvoRepository.save(salvo12);
+
+			salvoRepository.save(salvo13);
+			salvoRepository.save(salvo14);
+			salvoRepository.save(salvo15);
+			salvoRepository.save(salvo16);
+
+			salvoRepository.save(salvo17);
+			salvoRepository.save(salvo18);
+			salvoRepository.save(salvo19);
+			salvoRepository.save(salvo20);
+			salvoRepository.save(salvo21);
 
 			Date date1F = AddHalfHour(date);
 			Date date2F = AddHalfHour(date2);
