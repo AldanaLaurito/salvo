@@ -162,12 +162,9 @@ public class GamePlayer {
         if(this.ships.isEmpty()&& !(this.getGame().getScores().size()>0)){
             return "PLACESHIPS";
         }
-        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
-            return "LOST";
-
-
-        }
-        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
+        else if(!gamePlayerOpponentLost && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
+            return "LOST";        }
+        else if(!gamePlayerSelfLost && gamePlayerOpponentLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "WON";
         }
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
@@ -285,11 +282,11 @@ public class GamePlayer {
         else if(this.ships.isEmpty() || opponent.ships.isEmpty() || this.salvoes.isEmpty() || opponent.salvoes.isEmpty() || (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) || (lastTurnSelf>lastTurnOpponent)){
             return false;
         }
-        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && (this.getGame().getScores().size()==0)){
+        else if(!gamePlayerOpponentLost && gamePlayerSelfLost && (this.salvoes.size()==opponent.salvoes.size())){
               this.game.getScores().add(new Score(1,new Date(),this.game,opponent.getPlayer()));
               return true;
         }
-        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && (this.getGame().getScores().size()==0)){
+        else if(!gamePlayerSelfLost && gamePlayerOpponentLost && (this.salvoes.size()==opponent.salvoes.size())){
             this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
             return true;
         }
