@@ -13,10 +13,10 @@ public class Game {
     private long id;
     private Date gameDate;
 
-    @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="game", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<GamePlayer> gamePlayers;
 
-    @OneToMany(mappedBy="game", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="game", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Score> scores;
 
     public Game(){ this.gameDate = new Date();    }

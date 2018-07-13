@@ -296,6 +296,7 @@ public class GamePlayer {
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && (this.getGame().getScores().size()==0)){
             this.game.getScores().add(new Score(0.5,new Date(),this.game,opponent.getPlayer()));
             this.game.getScores().add(new Score(0.5,new Date(),this.game,this.getPlayer()));
+            
             return true;
         }
         return false;

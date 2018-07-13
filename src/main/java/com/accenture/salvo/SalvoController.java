@@ -193,4 +193,5 @@ public class SalvoController {
         public static final String MSG_ERROR_NO_USER = "No user has logged";
     }
 
+
 }
