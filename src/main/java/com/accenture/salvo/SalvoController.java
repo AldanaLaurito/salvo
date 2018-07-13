@@ -111,10 +111,18 @@ public class SalvoController {
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
 
-        else if((gamePlayer.getSalvoes().stream().filter(salvo1 -> salvo1.getTurn()==salvo.getTurn()).count()!=0)||(gamePlayer.getSalvoes().stream().count()==5)){
+        else if((gamePlayer.getSalvoes().stream().filter(salvo1 -> salvo1.getTurn()==salvo.getTurn()).count()!=0)/*||((gamePlayer.getSalvoes().stream().count()==5)&&(gamePlayer.salvoes.size()==))*/){
             msgNet.put("error","The user has already placed a salvo in this turn");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
+
+        if(gamePlayer.salvoes.isEmpty()){
+            salvo.setTurn(1);
+        }
+        else{
+            salvo.setTurn(gamePlayer.salvoes.size()+1);
+        }
+
         gamePlayer.setSalvo(salvo);
         gamePlayerRepo.save(gamePlayer);
         msgNet.put("success","The salvo was successfully placed");

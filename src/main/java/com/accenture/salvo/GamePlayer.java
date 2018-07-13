@@ -157,24 +157,23 @@ public class GamePlayer {
         boolean gamePlayerSelfLost = this.GamePlayerLost();
         boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
 
+        boolean scoresSetted = Scores();
 
         if(this.ships.isEmpty()&& !(this.getGame().getScores().size()>0)){
             return "PLACESHIPS";
         }
-        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && (this.getGame().getScores().size()>0)){
-            this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
-                return "LOST";
+        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
+            return "LOST";
+
+
         }
-        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && (this.getGame().getScores().size()>0)){
-            this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
+        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "WON";
         }
-        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && (this.getGame().getScores().size()>0)){
-            this.game.getScores().add(new Score(0.5,new Date(),this.game,opponent.getPlayer()));
-            this.game.getScores().add(new Score(0.5,new Date(),this.game,this.getPlayer()));
+        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "TIE";
         }
-        else if((this.getGame().getScores().size()>0) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
+        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
@@ -271,6 +270,35 @@ public class GamePlayer {
             return false;
         }
 
+    }
+    private boolean Scores(){
+        GamePlayer opponent = getOpponent();
+        boolean gamePlayerSelfLost = this.GamePlayerLost();
+        boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
+        int lastTurnSelf = this.salvoes.size();
+        int lastTurnOpponent = opponent.salvoes.size();
+
+
+        if (this.getGame().getScores().size()>0){
+            return true;
+        }
+        else if(this.ships.isEmpty() || opponent.ships.isEmpty() || this.salvoes.isEmpty() || opponent.salvoes.isEmpty() || (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) || (lastTurnSelf>lastTurnOpponent)){
+            return false;
+        }
+        else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && (this.getGame().getScores().size()==0)){
+              this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
+              return true;
+        }
+        else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && (this.getGame().getScores().size()==0)){
+            this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
+            return true;
+        }
+        else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && (this.getGame().getScores().size()==0)){
+            this.game.getScores().add(new Score(0.5,new Date(),this.game,opponent.getPlayer()));
+            this.game.getScores().add(new Score(0.5,new Date(),this.game,this.getPlayer()));
+            return true;
+        }
+        return false;
     }
 
 
