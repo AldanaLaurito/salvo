@@ -35,7 +35,7 @@ public class SalvoController {
 
         Player player = playerRepo.findByUserName(email);
         if (player != null) {
-            msg.put("error","Name in use");
+            msg.put(ApiMessage.KEY_ERROR,"Name in use");
             return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
 
@@ -48,7 +48,7 @@ public class SalvoController {
         Map<String,Object> msg=new HashMap<>();
 
         if (isGuest(authentication)) {
-            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            msg.put(ApiMessage.KEY_ERROR,ApiMessage.MSG_NO_USER);
             return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         Game game = new Game();
@@ -64,15 +64,15 @@ public class SalvoController {
         Map<String,Object> msg=new LinkedHashMap<>();
         Game game = repo.findById(idGame);
         if (isGuest(authentication)) {
-            msg.put(ErrorsMsg.KEY_ERROR,ErrorsMsg.MSG_ERROR_NO_USER);
+            msg.put(ApiMessage.KEY_ERROR,ApiMessage.MSG_NO_USER);
             return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
         }
         else if(game==null){
-            msg.put("error","No such game");
+            msg.put(ApiMessage.KEY_ERROR,"No such game");
             return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
         else if(game.getGamePlayers().stream().count()==2){
-            msg.put("error","Game is full");
+            msg.put(ApiMessage.KEY_ERROR,"Game is full");
             return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
         Player player = playerRepo.findByUserName(authentication.getName());
@@ -87,16 +87,16 @@ public class SalvoController {
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| ((gamePlayer!=null) && (authentication.getName()!=gamePlayer.getPlayer().getUserName()))) {
-            msgNet.put("error","Ships couldn't be saved");
+            msgNet.put(ApiMessage.KEY_ERROR,"Ships couldn't be saved");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
         else if(gamePlayer.getShips().stream().count()==5){
-            msgNet.put("error","The user has already placed their ships");
+            msgNet.put(ApiMessage.KEY_ERROR,"The user has already placed their ships");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
         gamePlayer.setShip(listShips);
         gamePlayerRepo.save(gamePlayer);
-        msgNet.put("success","The ships were successfully placed");
+        msgNet.put(ApiMessage.KEY_SUCCESS,"The ships were successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
     }
     @RequestMapping(path = "/games/players/{gamePlayerId}/salvoes", method= RequestMethod.POST)
@@ -113,7 +113,7 @@ public class SalvoController {
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
 
-        else if((gamePlayer.getSalvoes().stream().filter(salvo1 -> salvo1.getTurn()==salvo.getTurn()).count()!=0)/*||((gamePlayer.getSalvoes().stream().count()==5)&&(gamePlayer.salvoes.size()==))*/){
+        else if((gamePlayer.getSalvoes().stream().anyMatch(salvo1 -> salvo1.getTurn() == salvo.getTurn()))/*||((gamePlayer.getSalvoes().stream().count()==5)&&(gamePlayer.salvoes.size()==))*/){
             msgNet.put("error","The user has already placed a salvo in this turn");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
@@ -127,7 +127,7 @@ public class SalvoController {
 
         gamePlayer.setSalvo(salvo);
         gamePlayerRepo.save(gamePlayer);
-        msgNet.put("success","The salvo was successfully placed");
+        msgNet.put(ApiMessage.KEY_SUCCESS,"The salvo was successfully placed");
         return new ResponseEntity<>(msgNet, HttpStatus.CREATED);
         }
 
@@ -168,7 +168,7 @@ public class SalvoController {
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())
         {
             if(((gamePlayer.gameState()=="WON")||(gamePlayer.gameState()=="LOST")||(gamePlayer.gameState()=="TIE"))){
-                    game.getScores().stream().forEach(score -> scoreRepo.save(score));
+                    game.getScores().forEach(score -> scoreRepo.save(score));
             }
             list.put("id",game.getId());
             list.put("created",game.getGameDate());
@@ -180,7 +180,7 @@ public class SalvoController {
             return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
         }
         else{
-            list.put("error","unauthorized");
+            list.put(ApiMessage.KEY_ERROR,ApiMessage.MSG_UNAUTHORIZED);
             return new ResponseEntity<>(list, HttpStatus.UNAUTHORIZED);
         }
     }
@@ -193,9 +193,11 @@ public class SalvoController {
         return authentication == null || authentication.getName()=="anonymousUser" || authentication instanceof AnonymousAuthenticationToken;
     }
 
-    public final class ErrorsMsg  {
+    public final class ApiMessage  {
         public static final String KEY_ERROR= "error";
-        public static final String MSG_ERROR_NO_USER = "No user has logged";
+        public static final String KEY_SUCCESS= "success";
+        public static final String MSG_NO_USER = "No user has logged";
+        public static final String MSG_UNAUTHORIZED = "unauthorized";
     }
 
 

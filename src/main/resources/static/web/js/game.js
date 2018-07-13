@@ -308,7 +308,7 @@ function postShipLocations (postUrl) {
     })
         .done(function (response) {
             console.log(response);
-            $('#okShips').text(JSON.parse(response).OK);
+            $('#okShips').text(JSON.parse(response).success);
             $('#okShips').show( "slow" ).delay(3000).hide( "slow" );
             setTimeout(
                 function()
@@ -335,7 +335,7 @@ function postSalvo (postUrl) {
     })
         .done(function (response) {
             console.log(response);
-            $('#okSalvo').text(JSON.parse(response).OK);
+            $('#okSalvo').text(JSON.parse(response).success);
             $('#okSalvo').show( "slow" ).delay(3000).hide( "slow" );
             $('#salvoBlock').hide("slow");
             $('.oppCell').removeClass('caught--it');

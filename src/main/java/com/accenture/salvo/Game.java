@@ -67,16 +67,16 @@ public class Game {
         list.put("created",this.gameDate);
         list.put("gamePlayers",this.gamePlayers
                 .stream()
-                .map(gamePlayer -> gamePlayer.gamePlayerDtoNoShips())
+                .map(GamePlayer::gamePlayerDtoNoShips)
                 .collect(Collectors.toList()));
-        list.put("scores",this.scores.stream().map(score -> score.scoreDto()).collect(Collectors.toList()));
+        list.put("scores",this.scores.stream().map(Score::scoreDto).collect(Collectors.toList()));
         return list;
     }
     
     public List<Object> gameDtoPlayers(){
         return this.gamePlayers
                 .stream()
-                .map(gamePlayer -> gamePlayer.gamePlayerDtoPlayers())
+                .map(GamePlayer::gamePlayerDtoPlayers)
                 .collect(Collectors.toList());
     }
     public List<Object> gameDtoSalvo(){

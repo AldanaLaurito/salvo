@@ -93,7 +93,7 @@ public class GamePlayer {
         list.put("player",this.player.playerDto());
         list.put("joinDate",game.getGameDate());
         list.put("ships",this.ships.stream()
-                .map(ship -> ship.shipDto())
+                .map(Ship::shipDto)
                 .collect(Collectors.toList()));
         return list;
     }
@@ -107,13 +107,13 @@ public class GamePlayer {
     public List<Object> gamePlayerShipsDto(){
         return this.ships
                 .stream()
-                .map(ship -> ship.shipDto())
+                .map(Ship::shipDto)
                 .collect(Collectors.toList());
     }
     public List<Object> gamePlayerSalvosDto(){
         return this.salvoes
                 .stream()
-                .map(salvo -> salvo.salvoDto())
+                .map(Salvo::salvoDto)
                 .collect(Collectors.toList());
     }
     public Map<String, Object> gamePlayerDtoPlayers(){
