@@ -25,6 +25,8 @@ public class SalvoController {
     private ShipRepository shipRepo;
     @Autowired
     private SalvoRepository salvoRepo;
+    @Autowired
+    private ScoreRepository scoreRepo;
 
 
     @RequestMapping(path = "/players",method = RequestMethod.POST)
@@ -165,6 +167,9 @@ public class SalvoController {
         Game game = gamePlayer.getGame();
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())
         {
+            if(((gamePlayer.gameState()=="WON")||(gamePlayer.gameState()=="LOST")||(gamePlayer.gameState()=="TIE"))){
+                    game.getScores().stream().forEach(score -> scoreRepo.save(score));
+            }
             list.put("id",game.getId());
             list.put("created",game.getGameDate());
             list.put("gameState",gamePlayer.gameState());
@@ -192,6 +197,8 @@ public class SalvoController {
         public static final String KEY_ERROR= "error";
         public static final String MSG_ERROR_NO_USER = "No user has logged";
     }
+
+
 
 
 }

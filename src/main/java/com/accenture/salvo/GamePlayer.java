@@ -286,7 +286,7 @@ public class GamePlayer {
             return false;
         }
         else if(gamePlayerOpponentLost==false && gamePlayerSelfLost && (this.getGame().getScores().size()==0)){
-              this.game.getScores().add(new Score(1,new Date(),this.game,this.getPlayer()));
+              this.game.getScores().add(new Score(1,new Date(),this.game,opponent.getPlayer()));
               return true;
         }
         else if(gamePlayerSelfLost==false && gamePlayerOpponentLost && (this.getGame().getScores().size()==0)){
@@ -296,7 +296,7 @@ public class GamePlayer {
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && (this.getGame().getScores().size()==0)){
             this.game.getScores().add(new Score(0.5,new Date(),this.game,opponent.getPlayer()));
             this.game.getScores().add(new Score(0.5,new Date(),this.game,this.getPlayer()));
-            
+
             return true;
         }
         return false;
