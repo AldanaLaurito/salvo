@@ -149,10 +149,10 @@ public class GamePlayer {
             hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships)).toArray());
             hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships)).toArray());
         }else{
-            hits.put("self","");
-            hits.put("opponent","");
+            List<Object> list = new LinkedList<>();
+            hits.put("self",list);
+            hits.put("opponent",list);
         }
-        //
 
         return  hits;
 
@@ -249,6 +249,9 @@ public class GamePlayer {
 
         if (this.getGame().getScores().size()>0){
             return true;
+        }
+        else if(opponent==null){
+            return false;
         }
         else if(this.ships.isEmpty() || opponent.ships.isEmpty() || this.salvoes.isEmpty() || opponent.salvoes.isEmpty() || (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) || (lastTurnSelf>lastTurnOpponent)){
             return false;
