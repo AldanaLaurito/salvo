@@ -250,32 +250,11 @@ public class GamePlayer {
     }
 
     private void shipsAndShipsHitted (String key, Map<String,Integer> shipsHits, List<String> shipsTypes,Integer value){
+       if ((!key.contains("Hits")) && value>0 && (!(shipsTypes.contains(key)))){
+           shipsTypes.add(key);
+       }
+       else{
         switch (key){
-            case "carrier":
-                if(value>0 && (!(shipsTypes.contains(key)))){
-                    shipsTypes.add(key);
-                }
-                break;
-            case "battleship":
-                if(value>0 && (!(shipsTypes.contains(key)))){
-                    shipsTypes.add(key);
-                }
-                break;
-            case "submarine":
-                if(value>0 && (!(shipsTypes.contains(key)))){
-                    shipsTypes.add(key);
-                }
-                break;
-            case "destroyer":
-                if(value>0 && (!(shipsTypes.contains(key)))){
-                    shipsTypes.add(key);
-                }
-                break;
-            case "patrolboat":
-                if(value>0 && (!(shipsTypes.contains(key)))){
-                    shipsTypes.add(key);
-                }
-                break;
             case "carrierHits":
                 shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
                 break;
@@ -294,6 +273,7 @@ public class GamePlayer {
             default:
                 break;
         }
+       }
     }
 
     public void shipsSunken (Map<String,Integer> shipsLength, List<String> shipsLost, Map<String,Integer> shipsHits){

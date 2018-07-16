@@ -229,33 +229,33 @@ public class SalvoApplication {
 
 
 
-			Ship ship1 = new Ship("destroyer",gamePlayer1);
-			Ship ship2 = new Ship("submarine",gamePlayer1);
-			Ship ship3 = new Ship("patrolboat",gamePlayer1);
-			Ship ship4 = new Ship("destroyer",gamePlayer2);
-			Ship ship5 = new Ship("patrolboat",gamePlayer2);
-			Ship ship6 = new Ship("destroyer",gamePlayer3);
-			Ship ship7 = new Ship("patrolboat",gamePlayer3);
-			Ship ship8 = new Ship("submarine",gamePlayer4);
-			Ship ship9 = new Ship("patrolboat",gamePlayer4);
-			Ship ship10 = new Ship("destroyer",gamePlayer5);
-			Ship ship11 = new Ship("patrolboat",gamePlayer5);
-			Ship ship12 = new Ship("submarine",gamePlayer6);
-			Ship ship13 = new Ship("patrolboat",gamePlayer6);
-			Ship ship14 = new Ship("destroyer",gamePlayer7);
-			Ship ship15 = new Ship("patrolboat",gamePlayer7);
-			Ship ship16 = new Ship("submarine",gamePlayer8);
-			Ship ship17 = new Ship("patrolboat",gamePlayer8);
-			Ship ship18 = new Ship("destroyer",gamePlayer9);
-			Ship ship19 = new Ship("patrolboat",gamePlayer9);
-			Ship ship20 = new Ship("submarine",gamePlayer10);
-			Ship ship21 = new Ship("patrolboat",gamePlayer10);
-			Ship ship22 = new Ship("destroyer",gamePlayer11);
-			Ship ship23 = new Ship("patrolboat",gamePlayer11);
-			Ship ship24 = new Ship("destroyer",gamePlayer13);
-			Ship ship25 = new Ship("patrolboat",gamePlayer13);
-			Ship ship26 = new Ship("submarine",gamePlayer14);
-			Ship ship27 = new Ship("patrolboat",gamePlayer14);
+			Ship ship1 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer1);
+			Ship ship2 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer1);
+			Ship ship3 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer1);
+			Ship ship4 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer2);
+			Ship ship5 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer2);
+			Ship ship6 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer3);
+			Ship ship7 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer3);
+			Ship ship8 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer4);
+			Ship ship9 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer4);
+			Ship ship10 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer5);
+			Ship ship11 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer5);
+			Ship ship12 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer6);
+			Ship ship13 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer6);
+			Ship ship14 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer7);
+			Ship ship15 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer7);
+			Ship ship16 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer8);
+			Ship ship17 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer8);
+			Ship ship18 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer9);
+			Ship ship19 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer9);
+			Ship ship20 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer10);
+			Ship ship21 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer10);
+			Ship ship22 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer11);
+			Ship ship23 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer11);
+			Ship ship24 = new Ship(ShipTypes.KEY_DESTROYER,gamePlayer13);
+			Ship ship25 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer13);
+			Ship ship26 = new Ship(ShipTypes.KEY_SUBMARINE,gamePlayer14);
+			Ship ship27 = new Ship(ShipTypes.KEY_PATROLBOAT,gamePlayer14);
 
 
 			ship1.setLocations(listLocationsSh1);
