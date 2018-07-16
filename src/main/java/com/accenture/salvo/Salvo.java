@@ -73,22 +73,22 @@ public class Salvo {
         Map<String,Integer> damages = damagesMap(ships);
         listHits.put("turn",this.turn);
         List<String> hitLocations = hitLocations(ships);
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         listHits.put("hitLocations",hitLocations);
         listHits.put("damages",damages);
-        listHits.put("missed",salvoLocations.size() - hitLocations.size());
+        listHits.put("missed",salvosLocations.size() - hitLocations.size());
         return listHits;
     }
 
 
     public List<String> hitLocations (Set<Ship> ships){
         List<String> hitLocations = new ArrayList<>();
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             for (int i = 0; i < ship.getLocations().size(); i++) {
-                for (String salvoLocation : salvoLocations) {
+                for (String salvoLocation : salvosLocations) {
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
                         hitLocations.add(ship.getLocations().get(i));
                     }
@@ -102,12 +102,12 @@ public class Salvo {
 
     public Map<String,Integer> damagesMap(Set<Ship> ships){
         Map<String,Integer>damages = initializeDamages();
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             int loop = 0;
             for (int i = 0; i < ship.getLocations().size(); i++) {
-                for (String salvoLocation : salvoLocations) {
+                for (String salvoLocation : salvosLocations) {
                     String type = ship.getType();
                     Boolean hitted = false;
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
