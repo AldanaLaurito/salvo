@@ -205,62 +205,12 @@ public class GamePlayer {
             for (Map.Entry<String, Integer> entry : map.entrySet()) {
                 String key = entry.getKey();
                 Integer value = entry.getValue();
-                switch (key){
-                    case "carrier":
-                        if(value>0 && (!(shipsTypes.contains(key)))){
-                            shipsTypes.add(key);
-                        }
-                        break;
-                    case "battleship":
-                        if(value>0 && (!(shipsTypes.contains(key)))){
-                            shipsTypes.add(key);
-                        }
-                        break;
-                    case "submarine":
-                        if(value>0 && (!(shipsTypes.contains(key)))){
-                            shipsTypes.add(key);
-                        }
-                        break;
-                    case "destroyer":
-                        if(value>0 && (!(shipsTypes.contains(key)))){
-                            shipsTypes.add(key);
-                        }
-                        break;
-                    case "patrolboat":
-                        if(value>0 && (!(shipsTypes.contains(key)))){
-                            shipsTypes.add(key);
-                        }
-                        break;
-                     case "carrierHits":
-                         shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
-                        break;
-                    case "battleshipHits":
-                        shipsHits.put(ShipTypes.KEY_BATTLESHIP, shipsHits.get(ShipTypes.KEY_BATTLESHIP) + value);
-                        break;
-                    case "submarineHits":
-                        shipsHits.put(ShipTypes.KEY_SUBMARINE, shipsHits.get(ShipTypes.KEY_SUBMARINE) + value);
-                        break;
-                    case "destroyerHits":
-                        shipsHits.put(ShipTypes.KEY_DESTROYER, shipsHits.get(ShipTypes.KEY_DESTROYER) + value);
-                        break;
-                    case "patrolboatHits":
-                        shipsHits.put(ShipTypes.KEY_PATROLBOAT, shipsHits.get(ShipTypes.KEY_PATROLBOAT) + value);
-                        break;
-                    default:
-                        break;
-                }
 
+                shipsAndShipsHitted(key,shipsHits, shipsTypes,value);
 
             }
         }
-        for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {
-            String shipType = entry.getKey();
-            Integer hits = entry.getValue();
-
-            if((shipsLength.get(shipType))==hits){
-                shipsLost.add(shipType);
-            }
-        }
+        shipsSunken (shipsLength,shipsLost, shipsHits);
 
         return shipsLost.size() == shipsTypes.size();
 
@@ -294,6 +244,64 @@ public class GamePlayer {
             return true;
         }
         return false;
+    }
+
+    private void shipsAndShipsHitted (String key, Map<String,Integer> shipsHits, List<String> shipsTypes,Integer value){
+        switch (key){
+            case "carrier":
+                if(value>0 && (!(shipsTypes.contains(key)))){
+                    shipsTypes.add(key);
+                }
+                break;
+            case "battleship":
+                if(value>0 && (!(shipsTypes.contains(key)))){
+                    shipsTypes.add(key);
+                }
+                break;
+            case "submarine":
+                if(value>0 && (!(shipsTypes.contains(key)))){
+                    shipsTypes.add(key);
+                }
+                break;
+            case "destroyer":
+                if(value>0 && (!(shipsTypes.contains(key)))){
+                    shipsTypes.add(key);
+                }
+                break;
+            case "patrolboat":
+                if(value>0 && (!(shipsTypes.contains(key)))){
+                    shipsTypes.add(key);
+                }
+                break;
+            case "carrierHits":
+                shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
+                break;
+            case "battleshipHits":
+                shipsHits.put(ShipTypes.KEY_BATTLESHIP, shipsHits.get(ShipTypes.KEY_BATTLESHIP) + value);
+                break;
+            case "submarineHits":
+                shipsHits.put(ShipTypes.KEY_SUBMARINE, shipsHits.get(ShipTypes.KEY_SUBMARINE) + value);
+                break;
+            case "destroyerHits":
+                shipsHits.put(ShipTypes.KEY_DESTROYER, shipsHits.get(ShipTypes.KEY_DESTROYER) + value);
+                break;
+            case "patrolboatHits":
+                shipsHits.put(ShipTypes.KEY_PATROLBOAT, shipsHits.get(ShipTypes.KEY_PATROLBOAT) + value);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void shipsSunken (Map<String,Integer> shipsLength, List<String> shipsLost, Map<String,Integer> shipsHits){
+        for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {
+            String shipType = entry.getKey();
+            Integer hits = entry.getValue();
+
+            if((shipsLength.get(shipType))==hits){
+                shipsLost.add(shipType);
+            }
+        }
     }
 
 
