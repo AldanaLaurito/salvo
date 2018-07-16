@@ -80,10 +80,22 @@ public class Game {
                 .collect(Collectors.toList());
     }
     public List<Object> gameDtoSalvo(){
-        return this.gamePlayers
+    List<Long> listTurns = new LinkedList<>();
+    List<Object> salvos = new LinkedList<>();
+    this.gamePlayers.stream().forEach(gamePlayer -> gamePlayer.salvoes.stream().forEach(salvo -> listTurns.add(salvo.getTurn())));
+    for (Long turn: listTurns){
+        salvos.add(this.gamePlayers.stream().flatMap(gamePlayer -> gamePlayer.getSalvoes().stream().filter(salvo -> salvo.getTurn()==turn)).findFirst().get().salvoDto());
+
+    }
+
+    return salvos;
+
+
+       /* return this.gamePlayers
                 .stream()
                 .flatMap(gamePlayer -> gamePlayer.getSalvoes().stream().map(Salvo::salvoDto))
                 .collect(Collectors.toList());
+        */
     }
 
 
