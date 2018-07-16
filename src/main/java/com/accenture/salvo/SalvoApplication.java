@@ -545,23 +545,7 @@ public class SalvoApplication {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			/*http.authorizeRequests().anyRequest().fullyAuthenticated().
-					and().httpBasic();*/
 
-			/*http.authorizeRequests()
-					.antMatchers("/admin/**").hasAuthority("ADMIN")
-					.antMatchers("/**").hasAuthority("USER")
-					.and()
-					.formLogin();*/
-
-			/*http.authorizeRequests()
-					.antMatchers("/api/players").hasAuthority("USER")
-					.antMatchers("/api/game_view/**").hasAuthority("USER")
-					.antMatchers("/web/**").permitAll()
-					.antMatchers("/webNew/**").permitAll()
-					.antMatchers("/api/**").permitAll();
-					//.anyRequest().fullyAuthenticated();
-					*/
 			http.authorizeRequests()
 					.antMatchers("/webNew/**").permitAll()
 					.antMatchers("/api/game_view/**").hasAuthority("USER")
