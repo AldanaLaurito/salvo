@@ -47,9 +47,7 @@ public class Salvo {
         return salvoLocations;
     }
 
-    public void setLocations(List<String> locations) {
-        this.salvoLocations = locations;
-    }
+
     public void setSalvoLocations(List<String> locations) {
         this.salvoLocations = locations;
     }
