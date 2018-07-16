@@ -105,16 +105,16 @@ public class SalvoController {
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| (gamePlayer!=null && authentication.getName()!=gamePlayer.getPlayer().getUserName())) {
-            msgNet.put("error","The salvo couldn´t be saved");
+            msgNet.put(ApiMessage.KEY_ERROR,"The salvo couldn´t be saved");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
         else if(gamePlayer.getGame().getScores().size()>0){
-            msgNet.put("error","The game is over");
+            msgNet.put(ApiMessage.KEY_ERROR,"The game is over");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
 
         else if((gamePlayer.getSalvoes().stream().anyMatch(salvo1 -> salvo1.getTurn() == salvo.getTurn()))/*||((gamePlayer.getSalvoes().stream().count()==5)&&(gamePlayer.salvoes.size()==))*/){
-            msgNet.put("error","The user has already placed a salvo in this turn");
+            msgNet.put(ApiMessage.KEY_ERROR,"The user has already placed a salvo in this turn");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
 

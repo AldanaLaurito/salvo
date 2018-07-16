@@ -24,7 +24,6 @@ public class Salvo {
     }
     public Salvo(long turn, GamePlayer gamePlayer) {
         this.turn=turn;
-        // this.locations=new ArrayList<>();
         this.gamePlayer=gamePlayer;
     }
 
@@ -121,43 +120,45 @@ public class Salvo {
                     switch (type) {
                         case "carrier":
                             if (loop == 0) {
-                                damages.put(type, damages.get(type) + 1);
+                                damages.put("carrier", damages.get("carrier") + 1);
                             }
                             if (hitted) {
-                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                                damages.put("carrierHits", damages.get("carrierHits") + 1);
                             }
                             break;
                         case "battleship":
                             if (loop == 0) {
-                                damages.put(type, damages.get(type) + 1);
+                                damages.put("battleship", damages.get("battleship") + 1);
                             }
                             if (hitted) {
-                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                                damages.put("battleshipHits", damages.get("battleshipHits") + 1);
                             }
                             break;
                         case "submarine":
                             if (loop == 0) {
-                                damages.put(type, damages.get(type) + 1);
+                                damages.put("submarine", damages.get("submarine") + 1);
                             }
                             if (hitted) {
-                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                                damages.put("submarineHits", damages.get("submarineHits") + 1);
                             }
                             break;
                         case "destroyer":
                             if (loop == 0) {
-                                damages.put(type, damages.get(type) + 1);
+                                damages.put("destroyer", damages.get("destroyer") + 1);
                             }
                             if (hitted) {
-                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                                damages.put("destroyerHits", damages.get("destroyerHits") + 1);
                             }
                             break;
                         case "patrolboat":
                             if (loop == 0) {
-                                damages.put(type, damages.get(type) + 1);
+                                damages.put("patrolboat", damages.get("patrolboat") + 1);
                             }
                             if (hitted) {
-                                damages.put(type + "Hits", damages.get(type + "Hits") + 1);
+                                damages.put("patrolboatHits", damages.get("patrolboatHits") + 1);
                             }
+                            break;
+                        default:
                             break;
                     }
                     loop++;

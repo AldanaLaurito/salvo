@@ -159,7 +159,7 @@ public class GamePlayer {
 
         boolean scoresSetted = Scores();
 
-        if(this.ships.isEmpty()&& !(this.getGame().getScores().size()>0)){
+        if(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0)){
             return "PLACESHIPS";
         }
         else if(!gamePlayerOpponentLost && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
@@ -170,7 +170,7 @@ public class GamePlayer {
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "TIE";
         }
-        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (this.ships.size()>0 && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
+        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  ((!(this.ships.isEmpty())) && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
@@ -245,6 +245,8 @@ public class GamePlayer {
                         break;
                     case "patrolboatHits":
                         shipsHits.put("patrolboat", shipsHits.get("patrolboat") + value);
+                        break;
+                    default:
                         break;
                 }
 

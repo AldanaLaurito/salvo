@@ -29,14 +29,12 @@ public class SalvoApplication {
 	public Date AddHour(Date date)
 	{
 		Instant inst = date.toInstant();
-		//inst.plusSeconds(3600);
 		return Date.from(inst.plusSeconds(3600));
 
 	}
 	public Date AddHalfHour(Date date)
 	{
 		Instant inst = date.toInstant();
-		//inst.plusSeconds(1800);
 		return Date.from(inst.plusSeconds(1800));
 
 	}
