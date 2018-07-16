@@ -30,6 +30,9 @@ public class GamePlayer {
     @JoinColumn(name="player_id")
     private Player player;
 
+    private final String playerString = "player";
+    private final String joinDateString = "joinDate";
+
     public GamePlayer(){}
 
     public GamePlayer(Date date, Game game, Player player){
@@ -90,8 +93,8 @@ public class GamePlayer {
     public Map<String, Object> gamePlayerDto(){
         Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
-        list.put("player",this.player.playerDto());
-        list.put("joinDate",game.getGameDate());
+        list.put(playerString,this.player.playerDto());
+        list.put(joinDateString,game.getGameDate());
         list.put("ships",this.ships.stream()
                 .map(Ship::shipDto)
                 .collect(Collectors.toList()));
@@ -100,8 +103,8 @@ public class GamePlayer {
     public Map<String, Object> gamePlayerDtoNoShips(){
         Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
-        list.put("player",this.player.playerDto());
-        list.put("joinDate",game.getGameDate());
+        list.put(playerString,this.player.playerDto());
+        list.put(joinDateString,game.getGameDate());
         return list;
     }
     public List<Object> gamePlayerShipsDto(){
@@ -119,8 +122,8 @@ public class GamePlayer {
     public Map<String, Object> gamePlayerDtoPlayers(){
         Map<String,Object> list = new LinkedHashMap<>();
         list.put("id",this.id);
-        list.put("joinDate", this.creationDate);
-        list.put("player",this.player.playerDto());
+        list.put(joinDateString, this.creationDate);
+        list.put(playerString,this.player.playerDto());
         return list;
     }
 
