@@ -253,6 +253,7 @@ public class GamePlayer {
 
             }
         }
+
         for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {
             String shipType = entry.getKey();
             Integer hits = entry.getValue();
