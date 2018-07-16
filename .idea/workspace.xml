@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="26905a53-81f7-407b-adaf-9c9bf0a60db7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/accenture/salvo/SalvoController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -83,8 +84,8 @@
       <file leaf-file-name="GamePlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="208" column="35" lean-forward="true" selection-start-line="208" selection-start-column="35" selection-end-line="208" selection-end-column="35" />
+            <state relative-caret-position="153">
+              <caret line="130" column="43" lean-forward="true" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -543,9 +544,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -814,22 +815,22 @@
       <window_info anchor="bottom" id="Event Log" order="1" sideWeight="0.50226927" side_tool="true" weight="0.22442244" />
       <window_info anchor="right" id="Maven Projects" order="4" weight="0.32980332" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32838285" />
-      <window_info anchor="bottom" id="Run" order="6" sideWeight="0.4977307" weight="0.17161717" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" sideWeight="0.4977307" visible="true" weight="0.17161717" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32838285" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="0" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16187595" />
-      <window_info active="true" anchor="bottom" id="Inspection Results" visible="true" weight="0.32838285" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.16414523" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.25082508" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.32838285" />
-      <window_info anchor="right" id="Gradle" order="1" visible="true" weight="0.08850227" />
+      <window_info anchor="right" id="Gradle" order="1" visible="true" weight="0.0892587" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.22442244" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="6" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="4" />
@@ -1088,8 +1089,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/accenture/salvo/GamePlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="208" column="35" lean-forward="true" selection-start-line="208" selection-start-column="35" selection-end-line="208" selection-end-column="35" />
+        <state relative-caret-position="153">
+          <caret line="130" column="43" lean-forward="true" selection-start-line="130" selection-start-column="43" selection-end-line="130" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

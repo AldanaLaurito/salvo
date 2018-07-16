@@ -71,7 +71,7 @@ public class SalvoController {
             msg.put(ApiMessage.KEY_ERROR,"No such game");
             return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
-        else if(game.getGamePlayers().stream().count()==2){
+        else if((long) game.getGamePlayers().size() ==2){
             msg.put(ApiMessage.KEY_ERROR,"Game is full");
             return new ResponseEntity<>(msg, HttpStatus.CONFLICT);
         }
@@ -90,7 +90,7 @@ public class SalvoController {
             msgNet.put(ApiMessage.KEY_ERROR,"Ships couldn't be saved");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
-        else if(gamePlayer.getShips().stream().count()==5){
+        else if((long) gamePlayer.getShips().size() ==5){
             msgNet.put(ApiMessage.KEY_ERROR,"The user has already placed their ships");
             return new ResponseEntity<>(msgNet, HttpStatus.CONFLICT);
         }
@@ -162,7 +162,7 @@ public class SalvoController {
     @RequestMapping("/game_view/{idGamePlayer}")
     public ResponseEntity<Object> gamePlayer (Authentication authentication,@PathVariable long idGamePlayer){
 
-        Map<String, Object> list= new LinkedHashMap<String, Object>();
+        Map<String, Object> list= new LinkedHashMap<>();
         GamePlayer gamePlayer = gamePlayerRepo.findOne(idGamePlayer);
         Game game = gamePlayer.getGame();
         if(authentication.getName()==gamePlayer.getPlayer().getUserName())

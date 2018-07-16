@@ -260,12 +260,7 @@ public class GamePlayer {
             }
         }
 
-        if(shipsLost.size()==shipsTypes.size()){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return shipsLost.size() == shipsTypes.size();
 
     }
     private boolean Scores(){
