@@ -436,31 +436,31 @@ public class SalvoApplication {
 			listLocationSal21 .add("H8");
 
 
-			salvo1.setSalvoLocations(listLocationSal1);
-			salvo2.setSalvoLocations(listLocationSal2);
-			salvo3.setSalvoLocations(listLocationSal3);
-			salvo4.setSalvoLocations(listLocationSal4);
+			salvo1.setLocations(listLocationSal1);
+			salvo2.setLocations(listLocationSal2);
+			salvo3.setLocations(listLocationSal3);
+			salvo4.setLocations(listLocationSal4);
 
-			salvo5.setSalvoLocations(listLocationSal5);
-			salvo6.setSalvoLocations(listLocationSal6);
-			salvo7.setSalvoLocations(listLocationSal7);
-			salvo8.setSalvoLocations(listLocationSal8);
+			salvo5.setLocations(listLocationSal5);
+			salvo6.setLocations(listLocationSal6);
+			salvo7.setLocations(listLocationSal7);
+			salvo8.setLocations(listLocationSal8);
 
-			salvo9.setSalvoLocations(listLocationSal9);
-			salvo10.setSalvoLocations(listLocationSal10);
-			salvo11.setSalvoLocations(listLocationSal11);
-			salvo12.setSalvoLocations(listLocationSal12);
+			salvo9.setLocations(listLocationSal9);
+			salvo10.setLocations(listLocationSal10);
+			salvo11.setLocations(listLocationSal11);
+			salvo12.setLocations(listLocationSal12);
 
-			salvo13.setSalvoLocations(listLocationSal13);
-			salvo14.setSalvoLocations(listLocationSal14);
-			salvo15.setSalvoLocations(listLocationSal15);
-			salvo16.setSalvoLocations(listLocationSal16);
+			salvo13.setLocations(listLocationSal13);
+			salvo14.setLocations(listLocationSal14);
+			salvo15.setLocations(listLocationSal15);
+			salvo16.setLocations(listLocationSal16);
 
-			salvo17.setSalvoLocations(listLocationSal17);
-			salvo18.setSalvoLocations(listLocationSal18);
-			salvo19.setSalvoLocations(listLocationSal19);
-			salvo20.setSalvoLocations(listLocationSal20);
-			salvo21.setSalvoLocations(listLocationSal21);
+			salvo17.setLocations(listLocationSal17);
+			salvo18.setLocations(listLocationSal18);
+			salvo19.setLocations(listLocationSal19);
+			salvo20.setLocations(listLocationSal20);
+			salvo21.setLocations(listLocationSal21);
 
 			salvoRepository.save(salvo1);
 			salvoRepository.save(salvo2);

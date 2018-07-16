@@ -170,7 +170,7 @@ public class GamePlayer {
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "TIE";
         }
-        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  ((!(this.ships.isEmpty())) && opponent.ships.isEmpty()) || (lastTurnSelf>lastTurnOpponent)){
+        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (!(this.ships.isEmpty())) && opponent.ships.isEmpty() || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
@@ -184,18 +184,18 @@ public class GamePlayer {
 
     public boolean GamePlayerLost (){
         Map<String,Integer> shipsLength = new LinkedHashMap<>();
-        shipsLength.put(ShipTypes.KEY_CARRIER,5);
-        shipsLength.put(ShipTypes.KEY_BATTLESHIP,4);
-        shipsLength.put(ShipTypes.KEY_SUBMARINE,3);
-        shipsLength.put(ShipTypes.KEY_DESTROYER,3);
-        shipsLength.put(ShipTypes.KEY_PATROLBOAT,2);
+        shipsLength.put("carrier",5);
+        shipsLength.put("battleship",4);
+        shipsLength.put("submarine",3);
+        shipsLength.put("destroyer",3);
+        shipsLength.put("patrolboat",2);
 
         Map<String,Integer> shipsHits = new LinkedHashMap<>();
-        shipsHits.put(ShipTypes.KEY_CARRIER,0);
-        shipsHits.put(ShipTypes.KEY_BATTLESHIP,0);
-        shipsHits.put(ShipTypes.KEY_SUBMARINE,0);
-        shipsHits.put(ShipTypes.KEY_DESTROYER,0);
-        shipsHits.put(ShipTypes.KEY_PATROLBOAT,0);
+        shipsHits.put("carrier",0);
+        shipsHits.put("battleship",0);
+        shipsHits.put("submarine",0);
+        shipsHits.put("destroyer",0);
+        shipsHits.put("patrolboat",0);
 
         List<String> shipsTypes=new ArrayList<>();
         List<String> shipsLost = new ArrayList<>();
@@ -232,19 +232,19 @@ public class GamePlayer {
                         }
                         break;
                      case "carrierHits":
-                         shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
+                         shipsHits.put("carrier", shipsHits.get("carrier") + value);
                         break;
                     case "battleshipHits":
-                        shipsHits.put(ShipTypes.KEY_BATTLESHIP, shipsHits.get(ShipTypes.KEY_BATTLESHIP) + value);
+                        shipsHits.put("battleship", shipsHits.get("battleship") + value);
                         break;
                     case "submarineHits":
-                        shipsHits.put(ShipTypes.KEY_SUBMARINE, shipsHits.get(ShipTypes.KEY_SUBMARINE) + value);
+                        shipsHits.put("submarine", shipsHits.get("submarine") + value);
                         break;
                     case "destroyerHits":
-                        shipsHits.put(ShipTypes.KEY_DESTROYER, shipsHits.get(ShipTypes.KEY_DESTROYER) + value);
+                        shipsHits.put("destroyer", shipsHits.get("destroyer") + value);
                         break;
                     case "patrolboatHits":
-                        shipsHits.put(ShipTypes.KEY_PATROLBOAT, shipsHits.get(ShipTypes.KEY_PATROLBOAT) + value);
+                        shipsHits.put("patrolboat", shipsHits.get("patrolboat") + value);
                         break;
                     default:
                         break;
@@ -253,7 +253,6 @@ public class GamePlayer {
 
             }
         }
-
         for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {
             String shipType = entry.getKey();
             Integer hits = entry.getValue();
