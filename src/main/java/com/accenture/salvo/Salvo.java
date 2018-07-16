@@ -75,22 +75,22 @@ public class Salvo {
         Map<String,Integer> damages = damagesMap(ships);
         listHits.put("turn",this.turn);
         List<String> hitLocations = hitLocations(ships);
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         listHits.put("hitLocations",hitLocations);
         listHits.put("damages",damages);
-        listHits.put("missed",salvoLocations.size() - hitLocations.size());
+        listHits.put("missed",salvosLocations.size() - hitLocations.size());
         return listHits;
     }
 
 
     public List<String> hitLocations (Set<Ship> ships){
         List<String> hitLocations = new ArrayList<>();
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             for (int i = 0; i < ship.getLocations().size(); i++) {
-                for (String salvoLocation : salvoLocations) {
+                for (String salvoLocation : salvosLocations) {
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
                         hitLocations.add(ship.getLocations().get(i));
                     }
@@ -104,12 +104,12 @@ public class Salvo {
 
     public Map<String,Integer> damagesMap(Set<Ship> ships){
         Map<String,Integer>damages = initializeDamages();
-        List<String> salvoLocations=this.salvoLocations;
+        List<String> salvosLocations=this.salvoLocations;
 
         for(Ship ship : ships) {
             int loop = 0;
             for (int i = 0; i < ship.getLocations().size(); i++) {
-                for (String salvoLocation : salvoLocations) {
+                for (String salvoLocation : salvosLocations) {
                     String type = ship.getType();
                     Boolean hitted = false;
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
@@ -120,42 +120,42 @@ public class Salvo {
                     switch (type) {
                         case "carrier":
                             if (loop == 0) {
-                                damages.put("carrier", damages.get("carrier") + 1);
+                                damages.put(ShipTypes.KEY_CARRIER, damages.get(ShipTypes.KEY_CARRIER) + 1);
                             }
                             if (hitted) {
-                                damages.put("carrierHits", damages.get("carrierHits") + 1);
+                                damages.put(ShipHits.KEY_CARRIER, damages.get(ShipHits.KEY_CARRIER) + 1);
                             }
                             break;
                         case "battleship":
                             if (loop == 0) {
-                                damages.put("battleship", damages.get("battleship") + 1);
+                                damages.put(ShipTypes.KEY_BATTLESHIP, damages.get(ShipTypes.KEY_BATTLESHIP) + 1);
                             }
                             if (hitted) {
-                                damages.put("battleshipHits", damages.get("battleshipHits") + 1);
+                                damages.put(ShipHits.KEY_BATTLESHIP, damages.get(ShipHits.KEY_BATTLESHIP) + 1);
                             }
                             break;
                         case "submarine":
                             if (loop == 0) {
-                                damages.put("submarine", damages.get("submarine") + 1);
+                                damages.put(ShipTypes.KEY_SUBMARINE, damages.get(ShipTypes.KEY_SUBMARINE + 1));
                             }
                             if (hitted) {
-                                damages.put("submarineHits", damages.get("submarineHits") + 1);
+                                damages.put(ShipHits.KEY_SUBMARINE, damages.get(ShipHits.KEY_SUBMARINE) + 1);
                             }
                             break;
                         case "destroyer":
                             if (loop == 0) {
-                                damages.put("destroyer", damages.get("destroyer") + 1);
+                                damages.put(ShipTypes.KEY_DESTROYER, damages.get(ShipTypes.KEY_DESTROYER) + 1);
                             }
                             if (hitted) {
-                                damages.put("destroyerHits", damages.get("destroyerHits") + 1);
+                                damages.put(ShipHits.KEY_DESTROYER, damages.get(ShipHits.KEY_DESTROYER) + 1);
                             }
                             break;
                         case "patrolboat":
                             if (loop == 0) {
-                                damages.put("patrolboat", damages.get("patrolboat") + 1);
+                                damages.put(ShipTypes.KEY_PATROLBOAT, damages.get(ShipTypes.KEY_PATROLBOAT) + 1);
                             }
                             if (hitted) {
-                                damages.put("patrolboatHits", damages.get("patrolboatHits") + 1);
+                                damages.put(ShipHits.KEY_PATROLBOAT, damages.get(ShipHits.KEY_PATROLBOAT) + 1);
                             }
                             break;
                         default:
@@ -171,16 +171,16 @@ public class Salvo {
 
     private Map<String,Integer> initializeDamages(){
         Map<String,Integer>damages = new HashMap<>();
-        damages.put("carrierHits",0);
-        damages.put("carrier",0);
-        damages.put("battleshipHits",0);
-        damages.put("battleship",0);
-        damages.put("submarineHits",0);
-        damages.put("submarine",0);
-        damages.put("destroyer",0);
-        damages.put("destroyerHits",0);
-        damages.put("patrolboatHits",0);
-        damages.put("patrolboat",0);
+        damages.put(ShipHits.KEY_CARRIER,0);
+        damages.put(ShipTypes.KEY_CARRIER,0);
+        damages.put(ShipHits.KEY_BATTLESHIP,0);
+        damages.put(ShipTypes.KEY_BATTLESHIP,0);
+        damages.put(ShipHits.KEY_SUBMARINE,0);
+        damages.put(ShipTypes.KEY_SUBMARINE,0);
+        damages.put(ShipTypes.KEY_DESTROYER,0);
+        damages.put(ShipHits.KEY_DESTROYER,0);
+        damages.put(ShipHits.KEY_PATROLBOAT,0);
+        damages.put(ShipTypes.KEY_PATROLBOAT,0);
         return damages;
     }
 
