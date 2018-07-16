@@ -113,57 +113,14 @@ public class Salvo {
                     if (ship.getLocations().get(i).equals(salvoLocation)) {
                         hitted = true;
                     }
+                        damagesAndShips(loop, damages, hitted,type);
 
-
-                    switch (type) {
-                        case "carrier":
-                            if (loop == 0) {
-                                damages.put(ShipTypes.KEY_CARRIER, damages.get(ShipTypes.KEY_CARRIER) + 1);
-                            }
-                            if (hitted) {
-                                damages.put(ShipHits.KEY_CARRIER, damages.get(ShipHits.KEY_CARRIER) + 1);
-                            }
-                            break;
-                        case "battleship":
-                            if (loop == 0) {
-                                damages.put(ShipTypes.KEY_BATTLESHIP, damages.get(ShipTypes.KEY_BATTLESHIP) + 1);
-                            }
-                            if (hitted) {
-                                damages.put(ShipHits.KEY_BATTLESHIP, damages.get(ShipHits.KEY_BATTLESHIP) + 1);
-                            }
-                            break;
-                        case "submarine":
-                            if (loop == 0) {
-                                damages.put(ShipTypes.KEY_SUBMARINE, damages.get(ShipTypes.KEY_SUBMARINE) + 1);
-                            }
-                            if (hitted) {
-                                damages.put(ShipHits.KEY_SUBMARINE, damages.get(ShipHits.KEY_SUBMARINE) + 1);
-                            }
-                            break;
-                        case "destroyer":
-                            if (loop == 0) {
-                                damages.put(ShipTypes.KEY_DESTROYER, damages.get(ShipTypes.KEY_DESTROYER) + 1);
-                            }
-                            if (hitted) {
-                                damages.put(ShipHits.KEY_DESTROYER, damages.get(ShipHits.KEY_DESTROYER) + 1);
-                            }
-                            break;
-                        case "patrolboat":
-                            if (loop == 0) {
-                                damages.put(ShipTypes.KEY_PATROLBOAT, damages.get(ShipTypes.KEY_PATROLBOAT) + 1);
-                            }
-                            if (hitted) {
-                                damages.put(ShipHits.KEY_PATROLBOAT, damages.get(ShipHits.KEY_PATROLBOAT) + 1);
-                            }
-                            break;
-                        default:
-                            break;
-                    }
+                 }
                     loop++;
                 }
             }
 
-        }
+
         return damages;
     }
 
@@ -180,6 +137,53 @@ public class Salvo {
         damages.put(ShipHits.KEY_PATROLBOAT,0);
         damages.put(ShipTypes.KEY_PATROLBOAT,0);
         return damages;
+    }
+
+    private void damagesAndShips (int loop, Map<String,Integer> damages, boolean hitted, String type){
+        switch (type) {
+            case "carrier":
+                if (loop == 0) {
+                    damages.put(ShipTypes.KEY_CARRIER, damages.get(ShipTypes.KEY_CARRIER) + 1);
+                }
+                if (hitted) {
+                    damages.put(ShipHits.KEY_CARRIER, damages.get(ShipHits.KEY_CARRIER) + 1);
+                }
+                break;
+            case "battleship":
+                if (loop == 0) {
+                    damages.put(ShipTypes.KEY_BATTLESHIP, damages.get(ShipTypes.KEY_BATTLESHIP) + 1);
+                }
+                if (hitted) {
+                    damages.put(ShipHits.KEY_BATTLESHIP, damages.get(ShipHits.KEY_BATTLESHIP) + 1);
+                }
+                break;
+            case "submarine":
+                if (loop == 0) {
+                    damages.put(ShipTypes.KEY_SUBMARINE, damages.get(ShipTypes.KEY_SUBMARINE) + 1);
+                }
+                if (hitted) {
+                    damages.put(ShipHits.KEY_SUBMARINE, damages.get(ShipHits.KEY_SUBMARINE) + 1);
+                }
+                break;
+            case "destroyer":
+                if (loop == 0) {
+                    damages.put(ShipTypes.KEY_DESTROYER, damages.get(ShipTypes.KEY_DESTROYER) + 1);
+                }
+                if (hitted) {
+                    damages.put(ShipHits.KEY_DESTROYER, damages.get(ShipHits.KEY_DESTROYER) + 1);
+                }
+                break;
+            case "patrolboat":
+                if (loop == 0) {
+                    damages.put(ShipTypes.KEY_PATROLBOAT, damages.get(ShipTypes.KEY_PATROLBOAT) + 1);
+                }
+                if (hitted) {
+                    damages.put(ShipHits.KEY_PATROLBOAT, damages.get(ShipHits.KEY_PATROLBOAT) + 1);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
 }
