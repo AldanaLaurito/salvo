@@ -184,18 +184,18 @@ public class GamePlayer {
 
     public boolean GamePlayerLost (){
         Map<String,Integer> shipsLength = new LinkedHashMap<>();
-        shipsLength.put("carrier",5);
-        shipsLength.put("battleship",4);
-        shipsLength.put("submarine",3);
-        shipsLength.put("destroyer",3);
-        shipsLength.put("patrolboat",2);
+        shipsLength.put(ShipTypes.KEY_CARRIER,5);
+        shipsLength.put(ShipTypes.KEY_BATTLESHIP,4);
+        shipsLength.put(ShipTypes.KEY_SUBMARINE,3);
+        shipsLength.put(ShipTypes.KEY_DESTROYER,3);
+        shipsLength.put(ShipTypes.KEY_PATROLBOAT,2);
 
         Map<String,Integer> shipsHits = new LinkedHashMap<>();
-        shipsHits.put("carrier",0);
-        shipsHits.put("battleship",0);
-        shipsHits.put("submarine",0);
-        shipsHits.put("destroyer",0);
-        shipsHits.put("patrolboat",0);
+        shipsHits.put(ShipTypes.KEY_CARRIER,0);
+        shipsHits.put(ShipTypes.KEY_BATTLESHIP,0);
+        shipsHits.put(ShipTypes.KEY_SUBMARINE,0);
+        shipsHits.put(ShipTypes.KEY_DESTROYER,0);
+        shipsHits.put(ShipTypes.KEY_PATROLBOAT,0);
 
         List<String> shipsTypes=new ArrayList<>();
         List<String> shipsLost = new ArrayList<>();
@@ -232,19 +232,19 @@ public class GamePlayer {
                         }
                         break;
                      case "carrierHits":
-                         shipsHits.put("carrier", shipsHits.get("carrier") + value);
+                         shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
                         break;
                     case "battleshipHits":
-                        shipsHits.put("battleship", shipsHits.get("battleship") + value);
+                        shipsHits.put(ShipTypes.KEY_BATTLESHIP, shipsHits.get(ShipTypes.KEY_BATTLESHIP) + value);
                         break;
                     case "submarineHits":
-                        shipsHits.put("submarine", shipsHits.get("submarine") + value);
+                        shipsHits.put(ShipTypes.KEY_SUBMARINE, shipsHits.get(ShipTypes.KEY_SUBMARINE) + value);
                         break;
                     case "destroyerHits":
-                        shipsHits.put("destroyer", shipsHits.get("destroyer") + value);
+                        shipsHits.put(ShipTypes.KEY_DESTROYER, shipsHits.get(ShipTypes.KEY_DESTROYER) + value);
                         break;
                     case "patrolboatHits":
-                        shipsHits.put("patrolboat", shipsHits.get("patrolboat") + value);
+                        shipsHits.put(ShipTypes.KEY_PATROLBOAT, shipsHits.get(ShipTypes.KEY_PATROLBOAT) + value);
                         break;
                     default:
                         break;
