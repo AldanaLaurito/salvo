@@ -145,8 +145,15 @@ public class GamePlayer {
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new LinkedHashMap<>();
         GamePlayer opponent = getOpponent();
-        hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships)).toArray());//
-        hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships)).toArray());
+        if(opponent!=null){
+            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships)).toArray());
+            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships)).toArray());
+        }else{
+            hits.put("self","");
+            hits.put("opponent","");
+        }
+        //
+
         return  hits;
 
     }
@@ -155,14 +162,17 @@ public class GamePlayer {
 
         GamePlayer opponent = getOpponent();
         int lastTurnSelf = this.salvoes.size();
-        int lastTurnOpponent = opponent.salvoes.size();
-
+        int lastTurnOpponent = 0;
         boolean gamePlayerSelfLost = this.GamePlayerLost();
-        boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
+        boolean gamePlayerOpponentLost = false;
+        if(opponent!=null){
+           lastTurnOpponent = opponent.salvoes.size();
+           gamePlayerOpponentLost = opponent.GamePlayerLost();
+        }
 
         boolean scoresSetted = Scores();
 
-        if(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0)){
+        if(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0) ||(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0) && opponent==null)){
             return "PLACESHIPS";
         }
         else if(!gamePlayerOpponentLost && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
@@ -173,7 +183,7 @@ public class GamePlayer {
         else if((gamePlayerOpponentLost && gamePlayerSelfLost) && (lastTurnOpponent==lastTurnSelf) && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
             return "TIE";
         }
-        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) ||  (!(this.ships.isEmpty())) && opponent.ships.isEmpty() || (lastTurnSelf>lastTurnOpponent)){
+        else if((this.getGame().getScores().isEmpty()) && (this.getGame().getGamePlayers().size()==1 && this.getGame().getGamePlayers().contains(this)) || opponent==null ||  (!(this.ships.isEmpty())) && opponent.ships.isEmpty() || (lastTurnSelf>lastTurnOpponent)){
             return "WAIT";
         }
         else {
@@ -182,7 +192,7 @@ public class GamePlayer {
     }
 
     public GamePlayer getOpponent (){
-        return this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().get();
+        return this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().orElse(null);
     }
 
     public boolean GamePlayerLost (){
@@ -203,27 +213,38 @@ public class GamePlayer {
         List<String> shipsTypes=new ArrayList<>();
         List<String> shipsLost = new ArrayList<>();
         GamePlayer opponent = getOpponent();
-        List<Map<String, Integer>> damages =opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships)).collect(Collectors.toList());
-        for (Map<String, Integer> map : damages) {
-            for (Map.Entry<String, Integer> entry : map.entrySet()) {
-                String key = entry.getKey();
-                Integer value = entry.getValue();
+        if(opponent!=null) {
+            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships)).collect(Collectors.toList());
+            for (Map<String, Integer> map : damages) {
+                for (Map.Entry<String, Integer> entry : map.entrySet()) {
+                    String key = entry.getKey();
+                    Integer value = entry.getValue();
 
-                shipsAndShipsHitted(key,shipsHits, shipsTypes,value);
+                    shipsAndShipsHitted(key, shipsHits, shipsTypes, value);
 
+                }
             }
-        }
-        shipsSunken (shipsLength,shipsLost, shipsHits);
+            shipsSunken(shipsLength, shipsLost, shipsHits);
 
-        return shipsLost.size() == shipsTypes.size();
+            return shipsLost.size() == shipsTypes.size();
+        }else{
+            return false;
+        }
 
     }
     private boolean Scores(){
         GamePlayer opponent = getOpponent();
         boolean gamePlayerSelfLost = this.GamePlayerLost();
-        boolean gamePlayerOpponentLost = opponent.GamePlayerLost();
+        boolean gamePlayerOpponentLost = false;
+        if(opponent!=null){
+            gamePlayerOpponentLost = opponent.GamePlayerLost();
+        }
+
         int lastTurnSelf = this.salvoes.size();
-        int lastTurnOpponent = opponent.salvoes.size();
+        int lastTurnOpponent = 0;
+        if(opponent!=null){
+           lastTurnOpponent = opponent.salvoes.size();
+        }
 
 
         if (this.getGame().getScores().size()>0){

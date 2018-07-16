@@ -46,7 +46,6 @@ public class SalvoController {
     @RequestMapping(path = "/games",method = RequestMethod.POST)
     public ResponseEntity<Object> createGame(Authentication authentication){
         Map<String,Object> msg=new HashMap<>();
-
         if (isGuest(authentication)) {
             msg.put(ApiMessage.KEY_ERROR,ApiMessage.MSG_NO_USER);
             return new ResponseEntity<>( msg, HttpStatus.UNAUTHORIZED);
@@ -56,6 +55,7 @@ public class SalvoController {
         Player player = playerRepo.findByUserName(authentication.getName());
         GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
         gamePlayerRepo.save(gamePlayer);
+       // game.addGamePlayer(gamePlayer);
         msg.put("gpid",gamePlayer.getId());
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
