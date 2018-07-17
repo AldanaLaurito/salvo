@@ -147,10 +147,16 @@ public class GamePlayer {
 
         GamePlayer opponent = getOpponent();
         if(opponent!=null){
-            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> { Map<String,Integer> damages = new HashMap<>();
-                initializeDamages(damages);Map<String, Object> allHits=salvo.hits(this.ships,opponent.salvoes,damages);return allHits;}).toArray());
-            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> { Map<String,Integer> damages = new HashMap<>();
-                initializeDamages(damages);Map<String, Object> allHits=salvo.hits(opponent.ships,this.salvoes,damages);return allHits;}).toArray());
+            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn))
+                    .map(salvo -> { Map<String,Integer> damages = new HashMap<>();
+                initializeDamages(damages);
+                Map<String, Object> allHits=salvo.hits(this.ships,opponent.salvoes,damages);
+                        return allHits;}).toArray());
+            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn))
+                    .map(salvo -> { Map<String,Integer> damages = new HashMap<>();
+                initializeDamages(damages)
+                ;Map<String, Object> allHits=salvo.hits(opponent.ships,this.salvoes,damages);
+                return allHits;}).toArray());
         }else{
             List<Object> list = new LinkedList<>();
             hits.put("self",list);
@@ -237,7 +243,7 @@ public class GamePlayer {
         Map<String,Integer> damage = new HashMap<>();
         initializeDamages(damage);
         if(opponent!=null) {
-            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage)).collect(Collectors.toList());
+            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage,salvo.getTurn())).collect(Collectors.toList());
             for (Map<String, Integer> map : damages) {
                 int loop=0;
                 for (Map.Entry<String, Integer> entry : map.entrySet()) {

@@ -70,13 +70,14 @@ public class Salvo {
 
     public Map<String, Object> hits(Set<Ship> ships, Set<Salvo> salvos,Map<String,Integer>damages){
         Map<String,Object> listHits = new LinkedHashMap<>();
-        damages = damagesMap(ships, salvos,damages);
+        damages = damagesMap(ships, salvos,damages,this.getTurn());
         listHits.put("turn",this.turn);
         List<String> hitLocations = hitLocations(ships);
         List<String> salvosLocations=this.salvoLocations;
 
         listHits.put("hitLocations",hitLocations);
-        listHits.put("damages",damages);
+        //listHits.put("damages",damages);
+        listHits.put("damages",new LinkedHashMap<>(damages));
         listHits.put("missed",salvosLocations.size() - hitLocations.size());
         return listHits;
     }
@@ -100,7 +101,7 @@ public class Salvo {
         return hitLocations;
     }
 
-    public Map<String,Integer> damagesMap(Set<Ship> ships, Set<Salvo> salvos,Map<String,Integer>damages){
+    public Map<String,Integer> damagesMap(Set<Ship> ships, Set<Salvo> salvos,Map<String,Integer>damages, long turn){
         initializeDamages1(damages);
         List<String> salvosLocations=this.salvoLocations;
 
@@ -111,22 +112,15 @@ public class Salvo {
                 for (int i = 0; i < ship.getLocations().size(); i++) {
                     for (String salvoLocation : salvosLocations) {
 
-                        Boolean hitted = false;
                         if (ship.getLocations().get(i).equals(salvoLocation)) {
-                            hitted = true;
+                            damagesAndShips(loop, damages, type);
                         }
-                        damagesAndShips(loop, damages, hitted, type);
                     }
-
-
-
                 }
                 loop ++;
-
-
             }
 
-        allDamages(damages,ships,salvos);
+        allDamages(damages,ships,salvos, turn);
         return damages;
     }
 
@@ -138,20 +132,20 @@ public class Salvo {
         damages.put(ShipHits.KEY_PATROLBOAT,0);
     }
 
-    private void damagesAndShips (int loop, Map<String,Integer> damages, boolean hitted, String type){
-                if ((hitted)&& (loop == 0)) {
+    private void damagesAndShips (int loop, Map<String,Integer> damages, String type){
+                if (loop == 0) {
                     damages.put(type+"Hits", damages.get(type+"Hits") + 1);
                 }
         }
 
-        private void allDamages (Map<String,Integer> damages,Set<Ship> ships, Set<Salvo> salvos){
+        private void allDamages (Map<String,Integer> damages,Set<Ship> ships, Set<Salvo> salvos,long turn){
             for (Ship ship : ships) {
                 String type = ship.getType();
                 for (int i = 0; i < ship.getLocations().size(); i++) {
                     for (Salvo salvo : salvos) {
                         for (int j = 0; j < salvo.getLocations().size(); j++) {
 
-                            if (ship.getLocations().get(i).equals(salvo.getLocations().get(j))) {
+                            if ((ship.getLocations().get(i).equals(salvo.getLocations().get(j))) && (salvo.getTurn()<=turn)) {
                                 damages.put(type, damages.get(type) + 1);
                             }
                         }
