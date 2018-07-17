@@ -144,12 +144,13 @@ public class GamePlayer {
     }
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new LinkedHashMap<>();
-        Map<String,Integer> damages = new HashMap<>();
-        initializeDamages(damages);
+
         GamePlayer opponent = getOpponent();
         if(opponent!=null){
-            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships,opponent.salvoes,damages)).toArray());
-            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships,this.salvoes,damages)).toArray());
+            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> { Map<String,Integer> damages = new HashMap<>();
+                initializeDamages(damages);Map<String, Object> allHits=salvo.hits(this.ships,opponent.salvoes,damages);return allHits;}).toArray());
+            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> { Map<String,Integer> damages = new HashMap<>();
+                initializeDamages(damages);Map<String, Object> allHits=salvo.hits(opponent.ships,this.salvoes,damages);return allHits;}).toArray());
         }else{
             List<Object> list = new LinkedList<>();
             hits.put("self",list);
