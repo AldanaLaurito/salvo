@@ -251,7 +251,7 @@ public class GamePlayer {
                     Integer value = entry.getValue();
 
                     shipsAndShipsHitted(key, shipsHits, shipsTypes, value,loop);
-
+                    loop++;
                 }
 
             }
@@ -309,25 +309,21 @@ public class GamePlayer {
            shipsTypes.add(key);
        }
        else{
-        switch (key){
-            case "carrierHits":
-                shipsHits.put(ShipTypes.KEY_CARRIER, shipsHits.get(ShipTypes.KEY_CARRIER) + value);
-                break;
-            case "battleshipHits":
-                shipsHits.put(ShipTypes.KEY_BATTLESHIP, shipsHits.get(ShipTypes.KEY_BATTLESHIP) + value);
-                break;
-            case "submarineHits":
-                shipsHits.put(ShipTypes.KEY_SUBMARINE, shipsHits.get(ShipTypes.KEY_SUBMARINE) + value);
-                break;
-            case "destroyerHits":
-                shipsHits.put(ShipTypes.KEY_DESTROYER, shipsHits.get(ShipTypes.KEY_DESTROYER) + value);
-                break;
-            case "patrolboatHits":
-                shipsHits.put(ShipTypes.KEY_PATROLBOAT, shipsHits.get(ShipTypes.KEY_PATROLBOAT) + value);
-                break;
-            default:
-                break;
-        }
+         for (Ship ship : ships) {
+               String type = ship.getType();
+               for (int i = 0; i < ship.getLocations().size(); i++) {
+                   for (Salvo salvo : this.salvoes) {
+                       for (int j = 0; j < salvo.getLocations().size(); j++) {
+
+                           if ((ship.getLocations().get(i).equals(salvo.getLocations().get(j)))) {
+                               shipsHits.put(type, shipsHits.get(type) + value);
+                           }
+                       }
+
+
+                   }
+               }
+           }
        }
     }
 
