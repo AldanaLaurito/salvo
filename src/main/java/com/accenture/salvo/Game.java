@@ -79,10 +79,10 @@ public class Game {
                 .map(GamePlayer::gamePlayerDtoPlayers)
                 .collect(Collectors.toList());
     }
-    public List<Object> gameDtoSalvo(){
+    public List<Object> gameDtoSalvo(Set<Salvo> salvos){
            return this.gamePlayers
                 .stream()
-                .flatMap(gamePlayer -> gamePlayer.getSalvoes().stream().map(Salvo::salvoDto))
+                .flatMap(gamePlayer -> gamePlayer.getSalvoes().stream().map(salvo-> salvo.salvoDto()))
                 .collect(Collectors.toList());
 
     }

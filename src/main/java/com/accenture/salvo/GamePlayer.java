@@ -116,7 +116,7 @@ public class GamePlayer {
     public List<Object> gamePlayerSalvosDto(){
         return this.salvoes
                 .stream()
-                .map(Salvo::salvoDto)
+                .map(salvo->salvo.salvoDto())
                 .collect(Collectors.toList());
     }
     public Map<String, Object> gamePlayerDtoPlayers(){
@@ -144,10 +144,12 @@ public class GamePlayer {
     }
     public Map<String,Object> dtoHits (){
         Map<String,Object> hits = new LinkedHashMap<>();
+        Map<String,Integer> damages = new HashMap<>();
+        initializeDamages(damages);
         GamePlayer opponent = getOpponent();
         if(opponent!=null){
-            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships)).toArray());
-            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships)).toArray());
+            hits.put("self",opponent.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(ships,opponent.salvoes,damages)).toArray());
+            hits.put("opponent",this.salvoes.stream().sorted(Comparator.comparingLong(Salvo::getTurn)).map(salvo -> salvo.hits(opponent.ships,this.salvoes,damages)).toArray());
         }else{
             List<Object> list = new LinkedList<>();
             hits.put("self",list);
@@ -156,6 +158,13 @@ public class GamePlayer {
 
         return  hits;
 
+    }
+    private void initializeDamages(Map<String,Integer> damages){
+        damages.put(ShipTypes.KEY_CARRIER,0);
+        damages.put(ShipTypes.KEY_BATTLESHIP,0);
+        damages.put(ShipTypes.KEY_SUBMARINE,0);
+        damages.put(ShipTypes.KEY_DESTROYER,0);
+        damages.put(ShipTypes.KEY_PATROLBOAT,0);
     }
 
     public String gameState(){
@@ -172,7 +181,7 @@ public class GamePlayer {
 
         boolean scoresSetted = Scores();
 
-        if(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0) ||(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0) && opponent==null)){
+        if(this.placeShips(opponent)){
             return "PLACESHIPS";
         }
         else if(!gamePlayerOpponentLost && gamePlayerSelfLost && scoresSetted && (this.salvoes.size()==opponent.salvoes.size())){
@@ -188,6 +197,17 @@ public class GamePlayer {
         }
         else {
             return "PLAY";
+        }
+    }
+    private boolean placeShips (GamePlayer opponent){
+        if(this.ships.isEmpty()&& (this.getGame().getScores().size()<=0)){
+            return true;
+        }
+        else if((this.ships.isEmpty()&& (this.getGame().getScores().size()<=0) && opponent==null)){
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -213,16 +233,20 @@ public class GamePlayer {
         List<String> shipsTypes=new ArrayList<>();
         List<String> shipsLost = new ArrayList<>();
         GamePlayer opponent = getOpponent();
+        Map<String,Integer> damage = new HashMap<>();
+        initializeDamages(damage);
         if(opponent!=null) {
-            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships)).collect(Collectors.toList());
+            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage)).collect(Collectors.toList());
             for (Map<String, Integer> map : damages) {
+                int loop=0;
                 for (Map.Entry<String, Integer> entry : map.entrySet()) {
                     String key = entry.getKey();
                     Integer value = entry.getValue();
 
-                    shipsAndShipsHitted(key, shipsHits, shipsTypes, value);
+                    shipsAndShipsHitted(key, shipsHits, shipsTypes, value,loop);
 
                 }
+
             }
             shipsSunken(shipsLength, shipsLost, shipsHits);
 
@@ -273,8 +297,8 @@ public class GamePlayer {
         return false;
     }
 
-    private void shipsAndShipsHitted (String key, Map<String,Integer> shipsHits, List<String> shipsTypes,Integer value){
-       if ((!key.contains("Hits")) && value>0 && (!(shipsTypes.contains(key)))){
+    private void shipsAndShipsHitted (String key, Map<String,Integer> shipsHits, List<String> shipsTypes,Integer value, int loop){
+       if ((!key.contains("Hits")) && value>0 && (!(shipsTypes.contains(key))) && loop==0){
            shipsTypes.add(key);
        }
        else{

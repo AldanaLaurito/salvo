@@ -55,7 +55,6 @@ public class SalvoController {
         Player player = playerRepo.findByUserName(authentication.getName());
         GamePlayer gamePlayer = new GamePlayer(game.getGameDate(),game,player);
         gamePlayerRepo.save(gamePlayer);
-       // game.addGamePlayer(gamePlayer);
         msg.put("gpid",gamePlayer.getId());
         return new ResponseEntity<>(msg, HttpStatus.CREATED);
     }
@@ -175,7 +174,7 @@ public class SalvoController {
             list.put("gameState",gamePlayer.gameState());
             list.put("gamePlayers",game.gameDtoPlayers());
             list.put("ships", gamePlayer.gamePlayerShipsDto());
-            list.put("salvoes", game.gameDtoSalvo());
+            list.put("salvoes", game.gameDtoSalvo(gamePlayer.salvoes));
             list.put("hits",gamePlayer.dtoHits());
             return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
         }
