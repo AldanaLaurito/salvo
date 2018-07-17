@@ -242,6 +242,7 @@ public class GamePlayer {
         GamePlayer opponent = getOpponent();
         Map<String,Integer> damage = new HashMap<>();
         initializeDamages(damage);
+
         if(opponent!=null) {
             List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage,salvo.getTurn())).collect(Collectors.toList());
             for (Map<String, Integer> map : damages) {
@@ -323,6 +324,7 @@ public class GamePlayer {
 
                    }
                }
+
            }
        }
     }
