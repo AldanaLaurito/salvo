@@ -76,7 +76,6 @@ public class Salvo {
         List<String> salvosLocations=this.salvoLocations;
 
         listHits.put("hitLocations",hitLocations);
-        //listHits.put("damages",damages);
         listHits.put("damages",new LinkedHashMap<>(damages));
         listHits.put("missed",salvosLocations.size() - hitLocations.size());
         return listHits;
