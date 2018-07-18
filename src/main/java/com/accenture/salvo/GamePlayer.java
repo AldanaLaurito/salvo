@@ -179,11 +179,11 @@ public class GamePlayer {
         GamePlayer opponent = getOpponent();
         int lastTurnSelf = this.salvoes.size();
         int lastTurnOpponent = 0;
-        boolean gamePlayerSelfLost = this.GamePlayerLost();
+        boolean gamePlayerSelfLost = this.GamePlayerLost(lastTurnSelf);
         boolean gamePlayerOpponentLost = false;
         if(opponent!=null){
            lastTurnOpponent = opponent.salvoes.size();
-           gamePlayerOpponentLost = opponent.GamePlayerLost();
+           gamePlayerOpponentLost = opponent.GamePlayerLost(lastTurnOpponent);
         }
 
         boolean scoresSetted = Scores();
@@ -222,7 +222,7 @@ public class GamePlayer {
         return this.getGame().getGamePlayers().stream().filter(gamePlayer1 -> gamePlayer1!=this).findFirst().orElse(null);
     }
 
-    public boolean GamePlayerLost (){
+    public boolean GamePlayerLost (int lastTurn){
         Map<String,Integer> shipsLength = new LinkedHashMap<>();
         shipsLength.put(ShipTypes.KEY_CARRIER,5);
         shipsLength.put(ShipTypes.KEY_BATTLESHIP,4);
@@ -243,19 +243,42 @@ public class GamePlayer {
         Map<String,Integer> damage = new HashMap<>();
         initializeDamages(damage);
 
-        if(opponent!=null) {
-            List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage,salvo.getTurn())).collect(Collectors.toList());
+        if(opponent!=null && (!(opponent.salvoes.isEmpty())) && (!(this.salvoes.isEmpty()))) {
+            Map<String,Integer> damages = new HashMap<>();
+            initializeDamages(damages);
+            Salvo lastSalvo = this.getSalvoes().stream().filter(salvo -> salvo.getTurn()==lastTurn).findFirst().get();
+            lastSalvo.damagesMap(this.ships,opponent.salvoes,damages,lastTurn);
+            for (Map.Entry<String, Integer> entry : damages.entrySet()) {
+                String key = entry.getKey();
+                Integer value = entry.getValue();
+                shipsGamePlayerHas(key, shipsTypes, value);
+
+                if(shipsTypes.contains(key) && shipsHits.containsKey(key) && (shipsHits.get(key)==0)){
+                    shipsHits.put(key, shipsHits.get(key) + value);
+                }
+            }
+            /*List<Map<String, Integer>> damages = opponent.salvoes.stream().map(salvo -> salvo.damagesMap(this.ships,opponent.salvoes,damage,salvo.getTurn())).collect(Collectors.toList());
             for (Map<String, Integer> map : damages) {
-                int loop=0;
+
+
+                //int loop=0;
                 for (Map.Entry<String, Integer> entry : map.entrySet()) {
                     String key = entry.getKey();
                     Integer value = entry.getValue();
 
-                    shipsAndShipsHitted(key, shipsHits, shipsTypes, value,loop);
-                    loop++;
+                    //shipsAndShipsHitted(key, shipsHits, shipsTypes, value,opponent,lastTurn,map);
+                    shipsGamePlayerHas(key, shipsTypes, value);
+
+                    if(shipsTypes.contains(key) && shipsHits.containsKey(key) && (shipsHits.get(key)==0)){
+                        shipsHits.put(key, shipsHits.get(key) + value);
+                    }
+
+
+
+                    //loop++;
                 }
 
-            }
+            }*/
             shipsSunken(shipsLength, shipsLost, shipsHits);
 
             return shipsLost.size() == shipsTypes.size();
@@ -266,16 +289,17 @@ public class GamePlayer {
     }
     private boolean Scores(){
         GamePlayer opponent = getOpponent();
-        boolean gamePlayerSelfLost = this.GamePlayerLost();
-        boolean gamePlayerOpponentLost = false;
-        if(opponent!=null){
-            gamePlayerOpponentLost = opponent.GamePlayerLost();
-        }
 
         int lastTurnSelf = this.salvoes.size();
         int lastTurnOpponent = 0;
         if(opponent!=null){
            lastTurnOpponent = opponent.salvoes.size();
+        }
+
+        boolean gamePlayerSelfLost = this.GamePlayerLost(lastTurnSelf);
+        boolean gamePlayerOpponentLost = false;
+        if(opponent!=null){
+            gamePlayerOpponentLost = opponent.GamePlayerLost(lastTurnOpponent);
         }
 
 
@@ -305,29 +329,57 @@ public class GamePlayer {
         return false;
     }
 
-    private void shipsAndShipsHitted (String key, Map<String,Integer> shipsHits, List<String> shipsTypes,Integer value, int loop){
-       if ((!key.contains("Hits")) && value>0 && (!(shipsTypes.contains(key))) && loop==0){
-           shipsTypes.add(key);
-       }
-       else{
-         for (Ship ship : ships) {
-               String type = ship.getType();
-               for (int i = 0; i < ship.getLocations().size(); i++) {
+    private void shipsGamePlayerHas (String key, /*Map<String,Integer> shipsHits, */List<String> shipsTypes,Integer value/*, GamePlayer opponent, int lastTurn,Map<String,Integer>damages*/) {
+        for (Ship ship : this.ships) {
+
+            String type = ship.getType();
+            if(shipsTypes.isEmpty()||(!shipsTypes.contains(type))){
+                shipsTypes.add(type);
+            }
+        }
+
+
+        /*if ((!key.contains("Hits")) && value > 0 && (!(shipsTypes.contains(key)))) {
+            shipsTypes.add(key);
+        } /*else {
+            /*Salvo lastSalvo = this.getSalvoes().stream().filter(salvo -> salvo.getTurn()==lastTurn).findFirst().get();
+                    //.ifPresent( salvo -> { return salvo; }).orElse(new Salvo());
+            lastSalvo.damagesMap(this.ships,opponent.salvoes,damages,lastTurn);
+
+            /*for (Ship ship : this.ships) {
+                String type = ship.getType();
+                for (Salvo salvo : opponent.salvoes) {
+                    salvo.hitLocations(this.ships).stream().forEach(s -> {
+                        for (int i = 0; i < ship.getLocations().size(); i++) {
+                            if (s == ship.getLocations().get(i)) {
+                                shipsHits.put(type, shipsHits.get(type) + 1);
+                            }
+                        }
+                    });
+
+                }
+
+            }*/
+
+//--------------------------------------------
+              /* for (int i = 0; i < ship.getLocations().size(); i++) {
                    for (Salvo salvo : this.salvoes) {
+
                        for (int j = 0; j < salvo.getLocations().size(); j++) {
 
-                           if ((ship.getLocations().get(i).equals(salvo.getLocations().get(j)))) {
-                               shipsHits.put(type, shipsHits.get(type) + value);
-                           }
+                           if ((ship.getLocations().get(i).equals(salvo.getLocations().get(j)))/*&&(key.contains("Hits")) /*&& loop>0 /*&& value>0*///) {
+                             /*  shipsHits.put(type, shipsHits.get(type) + value);
+                         /*  }
                        }
 
 
-                   }
-               }
-
-           }
-       }
+                   }*/
+       // }
     }
+
+
+       //}
+    //}
 
     public void shipsSunken (Map<String,Integer> shipsLength, List<String> shipsLost, Map<String,Integer> shipsHits){
         for (Map.Entry<String, Integer> entry : shipsHits.entrySet()) {

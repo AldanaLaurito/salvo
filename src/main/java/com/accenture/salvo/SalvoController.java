@@ -86,7 +86,7 @@ public class SalvoController {
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| ((gamePlayer!=null) && (authentication.getName()!=gamePlayer.getPlayer().getUserName()))) {
-            msgNet.put(ApiMessage.KEY_ERROR,"Ships couldn't be saved");
+            msgNet.put(ApiMessage.KEY_ERROR,"Ships couldn't be saved. Check if user is logged in");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
         else if((long) gamePlayer.getShips().size() ==5){
@@ -104,7 +104,7 @@ public class SalvoController {
         GamePlayer gamePlayer = gamePlayerRepo.findById(gamePlayerId);
 
         if ((isGuest(authentication))|| (gamePlayer==null)|| (gamePlayer!=null && authentication.getName()!=gamePlayer.getPlayer().getUserName())) {
-            msgNet.put(ApiMessage.KEY_ERROR,"The salvo couldn´t be saved");
+            msgNet.put(ApiMessage.KEY_ERROR,"The salvo couldn´t be saved. Check if user is logged in");
             return new ResponseEntity<>(msgNet, HttpStatus.UNAUTHORIZED);
         }
         else if(gamePlayer.getGame().getScores().size()>0){
