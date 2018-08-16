@@ -1,4 +1,3 @@
-# salvo
-Battleship game.
-
+# Salvo
+Naval Battle Game
 Everything completely functional.
